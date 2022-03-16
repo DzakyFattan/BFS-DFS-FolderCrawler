@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32228.430
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubes2Stima-DeathFromStima-FolderCrawler", "Tubes2Stima-DeathFromStima-FolderCrawler\Tubes2Stima-DeathFromStima-FolderCrawler.csproj", "{291CC923-A761-4621-A1FC-FC3971E73C41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tubes2Stima-DeathFromStima-FolderCrawler", "Tubes2Stima-DeathFromStima-FolderCrawler.csproj", "{79B4EE8E-C309-44FA-9459-BB548E4B3D01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{291CC923-A761-4621-A1FC-FC3971E73C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{291CC923-A761-4621-A1FC-FC3971E73C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{291CC923-A761-4621-A1FC-FC3971E73C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{291CC923-A761-4621-A1FC-FC3971E73C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B4EE8E-C309-44FA-9459-BB548E4B3D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B4EE8E-C309-44FA-9459-BB548E4B3D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B4EE8E-C309-44FA-9459-BB548E4B3D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B4EE8E-C309-44FA-9459-BB548E4B3D01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D61B1ECD-87A0-4545-9E93-78463AD102E4}
+		SolutionGuid = {573B6CEE-3711-4243-A6C0-5D7F4D23E36C}
 	EndGlobalSection
 EndGlobal

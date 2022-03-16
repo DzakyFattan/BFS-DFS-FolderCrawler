@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tubes2Stima-DeathFromStima-FolderCrawler.Properties
+namespace Tubes2Stima_DeathFromStima_FolderCrawler.Properties
 {
 
 
