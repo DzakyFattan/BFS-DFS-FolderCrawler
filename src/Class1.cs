@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Microsoft.Msagl;
-namespace Tubes2Stima_DeathFromStima_FolderCrawler
+namespace Tubes2Stima-DeathFromStima-FolderCrawler
 {
     internal class Class1
     {

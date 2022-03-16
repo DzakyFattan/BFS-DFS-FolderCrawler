@@ -1,4 +1,4 @@
-﻿namespace Tubes2Stima_DeathFromStima_FolderCrawler
+﻿namespace Tubes2Stima-DeathFromStima-FolderCrawler
 {
     partial class Form1
     {
