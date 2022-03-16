@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Tubes2Stima_DeathFromStima_FolderCrawler.Class1;
-namespace Tubes2Stima_DeathFromStima_FolderCrawler
+using static Tubes2Stima-DeathFromStima-FolderCrawler.Class1;
+
+namespace Tubes2Stima-DeathFromStima-FolderCrawler
 {
     public partial class Form1 : Form
     {
@@ -16,7 +17,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         {
             InitializeComponent();
         }
-        
+
         private void label1_Click(object sender, EventArgs e)
         {
 

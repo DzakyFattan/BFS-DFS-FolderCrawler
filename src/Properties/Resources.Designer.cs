@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tubes2Stima_DeathFromStima_FolderCrawler.Properties
+namespace Tubes2Stima-DeathFromStima-FolderCrawler.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tubes2Stima_DeathFromStima_FolderCrawler.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tubes2Stima-DeathFromStima-FolderCrawler.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
