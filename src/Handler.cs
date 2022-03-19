@@ -7,36 +7,20 @@ using System.Text;
 using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Microsoft.Msagl;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
-    internal class Class1
+    internal class Handler
     {
         public static string lokasi;
-        public static Bitmap Getpicture()
-        {
-            List<string[]> data = new List<string[]>() { };
-            string[] directories = Getdirectories();
-            int maxlength = 0;
-            for (int i=0;i<directories.Length;i++)
-            {
-                data.Add(directories[i].Split('\\'));
-                maxlength = Math.Max(maxlength, data[i].Count());
-            }
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("");
-            Addgraph(graph, data, maxlength);
-            Microsoft.Msagl.GraphViewerGdi.GraphRenderer renderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(graph);
-            renderer.CalculateLayout();
-            int width = 1085;
-            int height = 739;
-            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppPArgb);
-            renderer.Render(bitmap);
-            return bitmap;
-        }
-        public static string Getlocation()
+        public static string fileName;
+        public static string searchMode;
+        public static int picBoxWidth;
+        public static int picBoxHeight;
+        public static bool findAllOccurence;
+        public static string GetLocation()
         {
             string location = null;
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
@@ -47,20 +31,37 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 location = dialog.FileName;
             }
             return location;
-            
-            
         }
-        public static string[] Getdirectories()
+        public static string[] GetDirectories()
         {
             string location = Regex.Replace(lokasi, @"\\", @"\\");
             int index = location.LastIndexOf("\\");
             string[] entries = Directory.GetFileSystemEntries(location, "*", SearchOption.AllDirectories);
             for (int i = 0; i < entries.Count(); i++)
             {
-                entries[i] = entries[i].Remove(0, index+1);
+                entries[i] = entries[i].Remove(0, index + 1);
             }
             return entries;
         }
+        public static Bitmap GetPicture()
+        {
+            List<string[]> data = new List<string[]>() { };
+            string[] directories = GetDirectories();
+            int maxlength = 0;
+            for (int i=0;i<directories.Length;i++)
+            {
+                data.Add(directories[i].Split('\\'));
+                maxlength = Math.Max(maxlength, data[i].Count());
+            }
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("");
+            Addgraph(graph, data, maxlength);
+            Microsoft.Msagl.GraphViewerGdi.GraphRenderer renderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(graph);
+            renderer.CalculateLayout();
+            Bitmap bitmap = new Bitmap(Math.Max((int)graph.Width, picBoxWidth), Math.Max((int)graph.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
+            renderer.Render(bitmap);
+            return bitmap;
+        }
+
         public static void Addgraph(Microsoft.Msagl.Drawing.Graph graph, List<string[]> data, int maxlength, int index=0)
         {
             if (index<maxlength-1)
