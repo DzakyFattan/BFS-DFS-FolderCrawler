@@ -16,53 +16,106 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         {
             InitializeComponent();
         }
-        
-        private void label1_Click(object sender, EventArgs e)
-        {
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Not Implemented
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            loc.Text = Getlocation();
+            // Choose Folder
+            loc.Text = GetLocation();
+            loc.ForeColor = Color.White;
             lokasi = loc.Text;
-            pictureBox1.Image = null;
+            pic_Result.Image = null;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            pictureBox1.Image = Getpicture();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            // Start Search
+            if (lokasi != null && fileName != null && searchMode != null)
+            {
+                pic_Result.Image = GetPicture();
+            } else
+            {
+                if (lokasi == null)
+                {
+                    loc.Text = "tidak ada input";
+                    loc.ForeColor = Color.Red;
+                }
+                if (fileName == null)
+                {
+                    label_fileName.Text = "tidak ada input";
+                    label_fileName.ForeColor = Color.Red;
+                }
+                if (searchMode == null)
+                {
+                    label_searchMethod.Text = "Pilih salah satu!";
+                    label_searchMethod.ForeColor= Color.Red;
+                }
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            fileName = tB_InputFile.Text;
+            label_fileName.Text = fileName;
+            label_fileName.ForeColor = Color.White;
+        }
+        private void opt_DFS_CheckedChanged(object sender, EventArgs e)
+        {
+            searchMode = "DFS";
+        }
+        private void opt_BFS_CheckedChanged(object sender, EventArgs e)
+        {
+            searchMode = "BFS";
+        }
 
+        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
+        {
+            findAllOccurence = true;
+        }
+        private void btn_Reset_Click(object sender, EventArgs e)
+        {
+            loc.Text = "(Location)";
+            loc.ForeColor= Color.White;
+            lokasi = null;
+            pic_Result.Image = null;
+            tB_InputFile.Text = null;
+            label_fileName.Text = null;
+            label_fileName.ForeColor = Color.White;
+            label_searchMethod.Text = null;
+            label_searchMethod.ForeColor = Color.White;
+            searchMode = null;
+            cb_FindAllDataOccurance.Checked = false;
+            opt_BFS.Checked = false;
+            opt_DFS.Checked = false;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            // Not Implemented
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            // Not Implemented
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            // Not Implemented
         }
 
         private void title_Click(object sender, EventArgs e)
         {
-
+            // Not Implemented
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-
+            // Not Implemented
         }
 
         private void panelMenu_Paint(object sender, PaintEventArgs e)
@@ -72,7 +125,12 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         private void loc_Click(object sender, EventArgs e)
         {
+            // Not Implemented
+        }
 
+        private void pic_Result_Click(object sender, EventArgs e)
+        {
+            // Not Implemented
         }
     }
 }

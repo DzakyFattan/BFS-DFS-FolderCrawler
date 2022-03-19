@@ -30,21 +30,24 @@
         {
             this.btn_ChooseFolder = new System.Windows.Forms.Button();
             this.label_Input = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tB_InputFile = new System.Windows.Forms.TextBox();
             this.lbl_ChooseStartDir = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.DFSButton = new System.Windows.Forms.RadioButton();
-            this.BFSButton = new System.Windows.Forms.RadioButton();
+            this.label_InputFile = new System.Windows.Forms.Label();
+            this.cb_FindAllDataOccurance = new System.Windows.Forms.CheckBox();
+            this.label_MetodePencarian = new System.Windows.Forms.Label();
+            this.opt_DFS = new System.Windows.Forms.RadioButton();
+            this.opt_BFS = new System.Windows.Forms.RadioButton();
             this.btn_Search = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pic_Result = new System.Windows.Forms.PictureBox();
             this.loc = new System.Windows.Forms.Label();
             this.panel_Menu = new System.Windows.Forms.Panel();
             this.panel_Logo = new System.Windows.Forms.Panel();
             this.panel_Bar = new System.Windows.Forms.Panel();
             this.label_SearchResult = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btn_Reset = new System.Windows.Forms.Button();
+            this.label_fileName = new System.Windows.Forms.Label();
+            this.label_searchMethod = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).BeginInit();
             this.panel_Menu.SuspendLayout();
             this.panel_Logo.SuspendLayout();
             this.panel_Bar.SuspendLayout();
@@ -83,13 +86,13 @@
             this.label_Input.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_Input.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // tB_InputFile
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 244);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(181, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tB_InputFile.Location = new System.Drawing.Point(16, 244);
+            this.tB_InputFile.Name = "tB_InputFile";
+            this.tB_InputFile.Size = new System.Drawing.Size(181, 20);
+            this.tB_InputFile.TabIndex = 2;
+            this.tB_InputFile.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lbl_ChooseStartDir
             // 
@@ -105,67 +108,71 @@
             this.lbl_ChooseStartDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbl_ChooseStartDir.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label2
+            // label_InputFile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(13, 223);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 21);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Input File Name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label_InputFile.AutoSize = true;
+            this.label_InputFile.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_InputFile.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label_InputFile.Location = new System.Drawing.Point(12, 220);
+            this.label_InputFile.Name = "label_InputFile";
+            this.label_InputFile.Size = new System.Drawing.Size(114, 21);
+            this.label_InputFile.TabIndex = 5;
+            this.label_InputFile.Text = "Input File Name";
+            this.label_InputFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_InputFile.Click += new System.EventHandler(this.label2_Click);
             // 
-            // checkBox1
+            // cb_FindAllDataOccurance
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.checkBox1.Location = new System.Drawing.Point(16, 279);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(185, 25);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "Find All Data Occurance";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_FindAllDataOccurance.AutoSize = true;
+            this.cb_FindAllDataOccurance.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 301);
+            this.cb_FindAllDataOccurance.Name = "cb_FindAllDataOccurance";
+            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(185, 25);
+            this.cb_FindAllDataOccurance.TabIndex = 6;
+            this.cb_FindAllDataOccurance.Text = "Find All Data Occurance";
+            this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
+            this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
             // 
-            // label4
+            // label_MetodePencarian
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(12, 339);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 21);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Metode Pencarian";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.label_MetodePencarian.AutoSize = true;
+            this.label_MetodePencarian.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_MetodePencarian.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label_MetodePencarian.Location = new System.Drawing.Point(12, 339);
+            this.label_MetodePencarian.Name = "label_MetodePencarian";
+            this.label_MetodePencarian.Size = new System.Drawing.Size(109, 21);
+            this.label_MetodePencarian.TabIndex = 7;
+            this.label_MetodePencarian.Text = "Search Method";
+            this.label_MetodePencarian.Click += new System.EventHandler(this.label4_Click);
             // 
-            // DFSButton
+            // opt_DFS
             // 
-            this.DFSButton.AutoSize = true;
-            this.DFSButton.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DFSButton.ForeColor = System.Drawing.Color.Snow;
-            this.DFSButton.Location = new System.Drawing.Point(14, 363);
-            this.DFSButton.Name = "DFSButton";
-            this.DFSButton.Size = new System.Drawing.Size(73, 35);
-            this.DFSButton.TabIndex = 8;
-            this.DFSButton.TabStop = true;
-            this.DFSButton.Text = "DFS";
-            this.DFSButton.UseVisualStyleBackColor = true;
+            this.opt_DFS.AutoSize = true;
+            this.opt_DFS.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.opt_DFS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.opt_DFS.Location = new System.Drawing.Point(16, 363);
+            this.opt_DFS.Name = "opt_DFS";
+            this.opt_DFS.Size = new System.Drawing.Size(73, 35);
+            this.opt_DFS.TabIndex = 8;
+            this.opt_DFS.TabStop = true;
+            this.opt_DFS.Text = "DFS";
+            this.opt_DFS.UseVisualStyleBackColor = true;
+            this.opt_DFS.CheckedChanged += new System.EventHandler(this.opt_DFS_CheckedChanged);
             // 
-            // BFSButton
+            // opt_BFS
             // 
-            this.BFSButton.AutoSize = true;
-            this.BFSButton.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BFSButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BFSButton.Location = new System.Drawing.Point(14, 404);
-            this.BFSButton.Name = "BFSButton";
-            this.BFSButton.Size = new System.Drawing.Size(71, 35);
-            this.BFSButton.TabIndex = 9;
-            this.BFSButton.TabStop = true;
-            this.BFSButton.Text = "BFS";
-            this.BFSButton.UseVisualStyleBackColor = true;
+            this.opt_BFS.AutoSize = true;
+            this.opt_BFS.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.opt_BFS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.opt_BFS.Location = new System.Drawing.Point(16, 404);
+            this.opt_BFS.Name = "opt_BFS";
+            this.opt_BFS.Size = new System.Drawing.Size(71, 35);
+            this.opt_BFS.TabIndex = 9;
+            this.opt_BFS.TabStop = true;
+            this.opt_BFS.Text = "BFS";
+            this.opt_BFS.UseVisualStyleBackColor = true;
+            this.opt_BFS.CheckedChanged += new System.EventHandler(this.opt_BFS_CheckedChanged);
             // 
             // btn_Search
             // 
@@ -175,7 +182,7 @@
             this.btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Search.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Search.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_Search.Location = new System.Drawing.Point(48, 462);
+            this.btn_Search.Location = new System.Drawing.Point(48, 489);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(144, 34);
             this.btn_Search.TabIndex = 10;
@@ -183,44 +190,48 @@
             this.btn_Search.UseVisualStyleBackColor = false;
             this.btn_Search.Click += new System.EventHandler(this.button2_Click);
             // 
-            // pictureBox1
+            // pic_Result
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(292, 105);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(937, 569);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.pic_Result.Location = new System.Drawing.Point(255, 87);
+            this.pic_Result.Name = "pic_Result";
+            this.pic_Result.Size = new System.Drawing.Size(997, 352);
+            this.pic_Result.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_Result.TabIndex = 14;
+            this.pic_Result.TabStop = false;
+            this.pic_Result.Click += new System.EventHandler(this.pic_Result_Click);
             // 
             // loc
             // 
             this.loc.AutoSize = true;
             this.loc.BackColor = System.Drawing.Color.Transparent;
             this.loc.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loc.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.loc.Location = new System.Drawing.Point(12, 158);
+            this.loc.ForeColor = System.Drawing.Color.White;
+            this.loc.Location = new System.Drawing.Point(12, 148);
             this.loc.MaximumSize = new System.Drawing.Size(220, 200);
             this.loc.Name = "loc";
-            this.loc.Size = new System.Drawing.Size(66, 21);
+            this.loc.Size = new System.Drawing.Size(74, 21);
             this.loc.TabIndex = 15;
-            this.loc.Text = "Location";
+            this.loc.Text = "(Location)";
             this.loc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.loc.Click += new System.EventHandler(this.loc_Click);
             // 
             // panel_Menu
             // 
             this.panel_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panel_Menu.Controls.Add(this.label_searchMethod);
+            this.panel_Menu.Controls.Add(this.label_fileName);
+            this.panel_Menu.Controls.Add(this.btn_Reset);
             this.panel_Menu.Controls.Add(this.loc);
             this.panel_Menu.Controls.Add(this.panel_Logo);
-            this.panel_Menu.Controls.Add(this.textBox1);
-            this.panel_Menu.Controls.Add(this.checkBox1);
-            this.panel_Menu.Controls.Add(this.label4);
-            this.panel_Menu.Controls.Add(this.DFSButton);
-            this.panel_Menu.Controls.Add(this.BFSButton);
+            this.panel_Menu.Controls.Add(this.tB_InputFile);
+            this.panel_Menu.Controls.Add(this.cb_FindAllDataOccurance);
+            this.panel_Menu.Controls.Add(this.label_MetodePencarian);
+            this.panel_Menu.Controls.Add(this.opt_DFS);
+            this.panel_Menu.Controls.Add(this.opt_BFS);
             this.panel_Menu.Controls.Add(this.btn_Search);
             this.panel_Menu.Controls.Add(this.lbl_ChooseStartDir);
             this.panel_Menu.Controls.Add(this.btn_ChooseFolder);
-            this.panel_Menu.Controls.Add(this.label2);
+            this.panel_Menu.Controls.Add(this.label_InputFile);
             this.panel_Menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Menu.Location = new System.Drawing.Point(0, 0);
             this.panel_Menu.Name = "panel_Menu";
@@ -263,6 +274,48 @@
             this.label_SearchResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_SearchResult.Click += new System.EventHandler(this.title_Click);
             // 
+            // btn_Reset
+            // 
+            this.btn_Reset.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btn_Reset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Reset.FlatAppearance.BorderSize = 0;
+            this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Reset.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Reset.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btn_Reset.Location = new System.Drawing.Point(48, 553);
+            this.btn_Reset.Name = "btn_Reset";
+            this.btn_Reset.Size = new System.Drawing.Size(144, 34);
+            this.btn_Reset.TabIndex = 16;
+            this.btn_Reset.Text = "Reset Input";
+            this.btn_Reset.UseVisualStyleBackColor = false;
+            this.btn_Reset.Click += new System.EventHandler(this.btn_Reset_Click);
+            // 
+            // label_fileName
+            // 
+            this.label_fileName.AutoSize = true;
+            this.label_fileName.BackColor = System.Drawing.Color.Transparent;
+            this.label_fileName.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_fileName.ForeColor = System.Drawing.Color.White;
+            this.label_fileName.Location = new System.Drawing.Point(12, 267);
+            this.label_fileName.MaximumSize = new System.Drawing.Size(220, 200);
+            this.label_fileName.Name = "label_fileName";
+            this.label_fileName.Size = new System.Drawing.Size(0, 21);
+            this.label_fileName.TabIndex = 17;
+            this.label_fileName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_searchMethod
+            // 
+            this.label_searchMethod.AutoSize = true;
+            this.label_searchMethod.BackColor = System.Drawing.Color.Transparent;
+            this.label_searchMethod.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_searchMethod.ForeColor = System.Drawing.Color.White;
+            this.label_searchMethod.Location = new System.Drawing.Point(12, 442);
+            this.label_searchMethod.MaximumSize = new System.Drawing.Size(220, 200);
+            this.label_searchMethod.Name = "label_searchMethod";
+            this.label_searchMethod.Size = new System.Drawing.Size(0, 21);
+            this.label_searchMethod.TabIndex = 18;
+            this.label_searchMethod.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Search;
@@ -272,14 +325,14 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.panel_Bar);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pic_Result);
             this.Controls.Add(this.panel_Menu);
             this.HelpButton = true;
             this.MinimumSize = new System.Drawing.Size(480, 270);
             this.Name = "Form1";
             this.Text = "Folder Crawler";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).EndInit();
             this.panel_Menu.ResumeLayout(false);
             this.panel_Menu.PerformLayout();
             this.panel_Logo.ResumeLayout(false);
@@ -294,20 +347,23 @@
 
         private System.Windows.Forms.Button btn_ChooseFolder;
         private System.Windows.Forms.Label label_Input;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tB_InputFile;
         private System.Windows.Forms.Label lbl_ChooseStartDir;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton DFSButton;
-        private System.Windows.Forms.RadioButton BFSButton;
+        private System.Windows.Forms.Label label_InputFile;
+        private System.Windows.Forms.CheckBox cb_FindAllDataOccurance;
+        private System.Windows.Forms.Label label_MetodePencarian;
+        private System.Windows.Forms.RadioButton opt_DFS;
+        private System.Windows.Forms.RadioButton opt_BFS;
         private System.Windows.Forms.Button btn_Search;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pic_Result;
         private System.Windows.Forms.Label loc;
         private System.Windows.Forms.Panel panel_Menu;
         private System.Windows.Forms.Panel panel_Logo;
         private System.Windows.Forms.Panel panel_Bar;
         private System.Windows.Forms.Label label_SearchResult;
+        private System.Windows.Forms.Button btn_Reset;
+        private System.Windows.Forms.Label label_fileName;
+        private System.Windows.Forms.Label label_searchMethod;
     }
 }
 
