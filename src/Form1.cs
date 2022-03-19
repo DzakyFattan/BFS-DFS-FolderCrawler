@@ -12,10 +12,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     public partial class Form1 : Form
     {
-        private Point startingPoint = Point.Empty;
-        private Point movingPoint = Point.Empty;
-        private bool isPanning = false;
-
         public Form1()
         {
             InitializeComponent();
@@ -35,15 +31,44 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             pic_Result.Image = null;
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            fileName = tB_InputFile.Text;
+            label_fileName.Text = fileName;
+            label_fileName.ForeColor = Color.White;
+        }
+        private void opt_DFS_CheckedChanged(object sender, EventArgs e)
+        {
+            searchMode = "DFS";
+            label_searchMethod.Text = null;
+        }
+        private void opt_BFS_CheckedChanged(object sender, EventArgs e)
+        {
+            searchMode = "BFS";
+            label_searchMethod.Text = null;
+        }
+
+        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
+        {
+            findAllOccurence = true;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             // Start Search
             if (lokasi != null && fileName != null && searchMode != null)
             {
+                int ms = DateTime.Now.Millisecond;
                 picBoxWidth = pic_Result.Size.Width;
                 picBoxHeight = pic_Result.Size.Height;
                 pic_Result.Image = GetPicture();
-            } else
+                label_ListResult.Text = "Hasil Pencarian";
+                listBox_Result.Visible = true;
+                ms = DateTime.Now.Millisecond - ms;
+                label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
+
+            }
+            else
             {
                 if (lokasi == null)
                 {
@@ -58,30 +83,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 if (searchMode == null)
                 {
                     label_searchMethod.Text = "Pilih salah satu!";
-                    label_searchMethod.ForeColor= Color.Red;
+                    label_searchMethod.ForeColor = Color.Red;
                 }
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            fileName = tB_InputFile.Text;
-            label_fileName.Text = fileName;
-            label_fileName.ForeColor = Color.White;
-        }
-        private void opt_DFS_CheckedChanged(object sender, EventArgs e)
-        {
-            searchMode = "DFS";
-        }
-        private void opt_BFS_CheckedChanged(object sender, EventArgs e)
-        {
-            searchMode = "BFS";
-        }
-
-        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
-        {
-            findAllOccurence = true;
-        }
         private void btn_Reset_Click(object sender, EventArgs e)
         {
             loc.Text = "(Location)";
@@ -92,11 +98,12 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_fileName.Text = null;
             label_fileName.ForeColor = Color.White;
             label_searchMethod.Text = null;
-            label_searchMethod.ForeColor = Color.White;
             searchMode = null;
             cb_FindAllDataOccurance.Checked = false;
             opt_BFS.Checked = false;
             opt_DFS.Checked = false;
+            listBox_Result.Visible = false;
+            label_ListResult.Text = null;
         }
 
         private void label1_Click(object sender, EventArgs e)

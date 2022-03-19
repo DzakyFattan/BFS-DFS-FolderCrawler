@@ -48,6 +48,9 @@
             this.label_SearchResult = new System.Windows.Forms.Label();
             this.panel_pb = new System.Windows.Forms.Panel();
             this.pic_Result = new System.Windows.Forms.PictureBox();
+            this.listBox_Result = new System.Windows.Forms.ListBox();
+            this.label_ListResult = new System.Windows.Forms.Label();
+            this.label_TimeSpent = new System.Windows.Forms.Label();
             this.panel_Menu.SuspendLayout();
             this.panel_Logo.SuspendLayout();
             this.panel_Bar.SuspendLayout();
@@ -236,7 +239,7 @@
             this.label_searchMethod.AutoSize = true;
             this.label_searchMethod.BackColor = System.Drawing.Color.Transparent;
             this.label_searchMethod.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_searchMethod.ForeColor = System.Drawing.Color.White;
+            this.label_searchMethod.ForeColor = System.Drawing.Color.Red;
             this.label_searchMethod.Location = new System.Drawing.Point(12, 442);
             this.label_searchMethod.MaximumSize = new System.Drawing.Size(220, 200);
             this.label_searchMethod.Name = "label_searchMethod";
@@ -327,6 +330,39 @@
             this.pic_Result.TabStop = false;
             this.pic_Result.Click += new System.EventHandler(this.pic_Result_Click);
             // 
+            // listBox_Result
+            // 
+            this.listBox_Result.BackColor = System.Drawing.SystemColors.Control;
+            this.listBox_Result.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox_Result.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox_Result.FormattingEnabled = true;
+            this.listBox_Result.ItemHeight = 18;
+            this.listBox_Result.Location = new System.Drawing.Point(247, 509);
+            this.listBox_Result.Name = "listBox_Result";
+            this.listBox_Result.Size = new System.Drawing.Size(1005, 144);
+            this.listBox_Result.TabIndex = 19;
+            this.listBox_Result.Visible = false;
+            // 
+            // label_ListResult
+            // 
+            this.label_ListResult.AutoSize = true;
+            this.label_ListResult.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ListResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.label_ListResult.Location = new System.Drawing.Point(247, 470);
+            this.label_ListResult.Name = "label_ListResult";
+            this.label_ListResult.Size = new System.Drawing.Size(0, 21);
+            this.label_ListResult.TabIndex = 20;
+            // 
+            // label_TimeSpent
+            // 
+            this.label_TimeSpent.AutoSize = true;
+            this.label_TimeSpent.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TimeSpent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.label_TimeSpent.Location = new System.Drawing.Point(1037, 466);
+            this.label_TimeSpent.Name = "label_TimeSpent";
+            this.label_TimeSpent.Size = new System.Drawing.Size(0, 21);
+            this.label_TimeSpent.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Search;
@@ -335,6 +371,9 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label_TimeSpent);
+            this.Controls.Add(this.label_ListResult);
+            this.Controls.Add(this.listBox_Result);
             this.Controls.Add(this.panel_pb);
             this.Controls.Add(this.panel_Bar);
             this.Controls.Add(this.panel_Menu);
@@ -352,6 +391,7 @@
             this.panel_pb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -377,6 +417,9 @@
         private System.Windows.Forms.Label label_searchMethod;
         private System.Windows.Forms.Panel panel_pb;
         private System.Windows.Forms.PictureBox pic_Result;
+        private System.Windows.Forms.ListBox listBox_Result;
+        private System.Windows.Forms.Label label_ListResult;
+        private System.Windows.Forms.Label label_TimeSpent;
     }
 }
 
