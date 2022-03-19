@@ -13,7 +13,7 @@ using System.Drawing.Imaging;
 using Microsoft.Msagl;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
-    internal class Class1
+    internal class Handler
     {
         public static string lokasi;
         public static Bitmap Getpicture()

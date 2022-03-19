@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Tubes2Stima_DeathFromStima_FolderCrawler.Class1;
+using static Tubes2Stima_DeathFromStima_FolderCrawler.Handler;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     public partial class Form1 : Form
@@ -51,6 +51,26 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void loc_Click(object sender, EventArgs e)
         {
 
         }
