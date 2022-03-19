@@ -17,6 +17,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         public static string lokasi;
         public static string fileName;
         public static string searchMode;
+        public static int picBoxWidth;
+        public static int picBoxHeight;
         public static bool findAllOccurence;
         public static string GetLocation()
         {
@@ -55,9 +57,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             Addgraph(graph, data, maxlength);
             Microsoft.Msagl.GraphViewerGdi.GraphRenderer renderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(graph);
             renderer.CalculateLayout();
-            int width = 997;
-            int height = 352;
-            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format32bppPArgb);
+            Bitmap bitmap = new Bitmap(Math.Max((int)graph.Width, picBoxWidth), Math.Max((int)graph.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
             renderer.Render(bitmap);
             return bitmap;
         }

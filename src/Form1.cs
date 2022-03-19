@@ -12,6 +12,10 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     public partial class Form1 : Form
     {
+        private Point startingPoint = Point.Empty;
+        private Point movingPoint = Point.Empty;
+        private bool isPanning = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -36,6 +40,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             // Start Search
             if (lokasi != null && fileName != null && searchMode != null)
             {
+                picBoxWidth = pic_Result.Size.Width;
+                picBoxHeight = pic_Result.Size.Height;
                 pic_Result.Image = GetPicture();
             } else
             {
@@ -130,7 +136,13 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         private void pic_Result_Click(object sender, EventArgs e)
         {
-            // Not Implemented
+            if (pic_Result.SizeMode == PictureBoxSizeMode.Zoom)
+            {
+                pic_Result.SizeMode = PictureBoxSizeMode.AutoSize;
+            } else if (pic_Result.SizeMode == PictureBoxSizeMode.AutoSize)
+            {
+                pic_Result.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
     }
 }
