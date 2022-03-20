@@ -65,43 +65,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 return resultBitmap;
             }
             return null;
-
-            // List<string[]> data = new List<string[]>() { };
-            // string[] directories = DirToArrayOfString();
-            // int maxlength = 0;
-            // for (int i=0;i<directories.Length;i++)
-            // {
-            //     data.Add(directories[i].Split('\\'));
-            //     Console.WriteLine("dir " + i + " " + directories[i]);
-            //     maxlength = Math.Max(maxlength, data[i].Count());
-            // }
-            // 
-            // Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("");
-            // Addgraph(graph, data, maxlength);
-            // Microsoft.Msagl.GraphViewerGdi.GraphRenderer renderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(graph);
-            // renderer.CalculateLayout();
-            // Bitmap bitmap = new Bitmap(Math.Max((int)graph.Width, picBoxWidth), Math.Max((int)graph.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
-            // renderer.Render(bitmap);
-            // return bitmap;
-        }
-
-        public static void Addgraph(Microsoft.Msagl.Drawing.Graph graph, List<string[]> data, int maxlength, int index=0)
-        {
-            if (index<maxlength-1)
-            {
-                int position = index;
-                for (int i = 0; i < data.Count; i++)
-                {
-                    if (data[i].Count() == position + 2)
-                    {
-                        
-                        graph.AddEdge(data[i][position], data[i][position + 1]);
-                    }
-                }
-                position++;
-                Addgraph(graph, data, maxlength, position);
-            }
-            
         }
     }
 }
