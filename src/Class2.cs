@@ -24,9 +24,9 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         public bool DFS(string input, out string fpath)
         {
-            System.IO.FileInfo[] files = null;
-            System.IO.DirectoryInfo[] subDirs = null;
-            fpath = "default";
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+            fpath = null;
             // Find all the subdirectories under this directory.
             try
             {
@@ -56,13 +56,14 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
             if (files != null)
             {
-                foreach (System.IO.FileInfo fi in files)
+                foreach (FileInfo fi in files)
                 {
                     // Matching with the input file
-                    fpath = fi.FullName;
-                    string fname = Path.GetFileNameWithoutExtension(fpath);
-                    if (fname.Equals(input))
+                    string matchpath = fi.FullName;
+                    string matchname = Path.GetFileNameWithoutExtension(matchpath);
+                    if (matchname.Equals(input))
                     {
+                        fpath = matchpath;
                         return true;
                     }
                 }
@@ -70,12 +71,60 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             return false;
         }
 
+        public void MultipleDFS(string input, ref string[] fpath)
+        {
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+            // Find all the subdirectories under this directory.
+            try
+            {
+                subDirs = root.GetDirectories();
+            }
+            // Do nothing if error
+            catch (Exception) { }
+            // Recursive for every subDirectory (DFS)
+            if (subDirs != null)
+            {
+                foreach (DirectoryInfo dirInfo in subDirs)
+                {
+                    Implementation imp = new Implementation(dirInfo);
+                    imp.MultipleDFS(input, ref fpath);
+                }
+            }
+            // If there's no more subdir then process through files
+            try
+            {
+                files = root.GetFiles("*.*");
+            }
+            // Skip error
+            catch (Exception){}
+
+            if (files != null)
+            {
+                foreach (FileInfo fi in files)
+                {
+                    // Matching with the input file
+                    string matchpath = fi.FullName;
+                    string matchname = Path.GetFileNameWithoutExtension(matchpath);
+                    if (matchname.Equals(input))
+                    {
+                        if (fpath == null){
+                            fpath = new string[] {matchpath};
+                        }
+                        else {
+                            fpath = fpath.Concat(new string[] {matchpath}).ToArray();
+                        }
+                    }
+                }
+            }
+        }
         //TODO : public BFS(string input) { } // Similar to DFS, different process
         
         //Testing Main
         static void Main(string[] args)
         {
-            string fpath = "default";
+            /* Test DFS 
+            string fpath;
             Console.WriteLine("Masukkan nama file: ");
             string input = Console.ReadLine();
             DirectoryInfo di = new DirectoryInfo(@"D:");
@@ -91,7 +140,29 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 {
                     Console.WriteLine("File not found");
                 }
+            } */
+            
+            /* Test MultipleDFS
+            string[] fpath = null;
+            Console.WriteLine("Masukkan nama file: ");
+            string input = Console.ReadLine();
+            DirectoryInfo di = new DirectoryInfo(@"D:");
+            if (di.Exists)
+            {
+                Implementation imp = new Implementation(di);
+                imp.MultipleDFS(input, ref fpath);
+                if(fpath != null){
+                    foreach (string outPath in fpath)
+                    {
+                        Console.WriteLine(outPath);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("File not found");
+                }
             }
+            */
         }
     }
 }
