@@ -89,7 +89,6 @@
             this.label_Input.TabIndex = 1;
             this.label_Input.Text = "Input";
             this.label_Input.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_Input.Click += new System.EventHandler(this.label1_Click);
             // 
             // tB_InputFile
             // 
@@ -111,7 +110,6 @@
             this.lbl_ChooseStartDir.TabIndex = 4;
             this.lbl_ChooseStartDir.Text = "Choose Starting Directory";
             this.lbl_ChooseStartDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_ChooseStartDir.Click += new System.EventHandler(this.label3_Click);
             // 
             // label_InputFile
             // 
@@ -124,7 +122,6 @@
             this.label_InputFile.TabIndex = 5;
             this.label_InputFile.Text = "Input File Name";
             this.label_InputFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_InputFile.Click += new System.EventHandler(this.label2_Click);
             // 
             // cb_FindAllDataOccurance
             // 
@@ -149,7 +146,6 @@
             this.label_MetodePencarian.Size = new System.Drawing.Size(109, 21);
             this.label_MetodePencarian.TabIndex = 7;
             this.label_MetodePencarian.Text = "Search Method";
-            this.label_MetodePencarian.Click += new System.EventHandler(this.label4_Click);
             // 
             // opt_DFS
             // 
@@ -208,7 +204,6 @@
             this.loc.TabIndex = 15;
             this.loc.Text = "(Location)";
             this.loc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.loc.Click += new System.EventHandler(this.loc_Click);
             // 
             // panel_Menu
             // 
@@ -232,7 +227,6 @@
             this.panel_Menu.Name = "panel_Menu";
             this.panel_Menu.Size = new System.Drawing.Size(240, 681);
             this.panel_Menu.TabIndex = 16;
-            this.panel_Menu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
             // 
             // label_searchMethod
             // 
@@ -309,7 +303,6 @@
             this.label_SearchResult.TabIndex = 0;
             this.label_SearchResult.Text = "Search Result\r\n";
             this.label_SearchResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_SearchResult.Click += new System.EventHandler(this.title_Click);
             // 
             // panel_pb
             // 
@@ -347,7 +340,7 @@
             // 
             this.label_ListResult.AutoSize = true;
             this.label_ListResult.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ListResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.label_ListResult.ForeColor = System.Drawing.Color.Black;
             this.label_ListResult.Location = new System.Drawing.Point(247, 470);
             this.label_ListResult.Name = "label_ListResult";
             this.label_ListResult.Size = new System.Drawing.Size(0, 21);

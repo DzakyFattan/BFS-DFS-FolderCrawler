@@ -27,7 +27,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             // Choose Folder
             loc.Text = GetLocation();
             loc.ForeColor = Color.White;
-            lokasi = loc.Text;
+            rootFolder = loc.Text;
             pic_Result.Image = null;
         }
 
@@ -56,21 +56,30 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         private void button2_Click(object sender, EventArgs e)
         {
             // Start Search
-            if (lokasi != null && fileName != null && searchMode != null)
+            if (rootFolder != null && fileName != null && searchMode != null)
             {
                 int ms = DateTime.Now.Millisecond;
                 picBoxWidth = pic_Result.Size.Width;
                 picBoxHeight = pic_Result.Size.Height;
-                pic_Result.Image = GetPicture();
-                label_ListResult.Text = "Hasil Pencarian";
-                listBox_Result.Visible = true;
-                ms = DateTime.Now.Millisecond - ms;
-                label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
+                pic_Result.Image = GetResult();
+                if (pic_Result.Image != null)
+                {
+                    label_ListResult.ForeColor = Color.Black;
+                    label_ListResult.Text = "Hasil Pencarian";
+                    listBox_Result.Visible = true;
+                    ms = DateTime.Now.Millisecond - ms;
+                    label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
+                } else
+                {
+                    label_ListResult.Text = "Error";
+                    label_ListResult.ForeColor = Color.Red;
+                }
+                
 
             }
             else
             {
-                if (lokasi == null)
+                if (rootFolder == null)
                 {
                     loc.Text = "tidak ada input";
                     loc.ForeColor = Color.Red;
@@ -91,8 +100,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         private void btn_Reset_Click(object sender, EventArgs e)
         {
             loc.Text = "(Location)";
-            loc.ForeColor= Color.White;
-            lokasi = null;
+            loc.ForeColor = Color.White;
+            rootFolder = null;
             pic_Result.Image = null;
             tB_InputFile.Text = null;
             label_fileName.Text = null;
@@ -104,41 +113,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             opt_DFS.Checked = false;
             listBox_Result.Visible = false;
             label_ListResult.Text = null;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
-        }
-
-        private void title_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
-        }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void loc_Click(object sender, EventArgs e)
-        {
-            // Not Implemented
+            label_ListResult.ForeColor = Color.Black;
         }
 
         private void pic_Result_Click(object sender, EventArgs e)
@@ -146,7 +121,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             if (pic_Result.SizeMode == PictureBoxSizeMode.Zoom)
             {
                 pic_Result.SizeMode = PictureBoxSizeMode.AutoSize;
-            } else if (pic_Result.SizeMode == PictureBoxSizeMode.AutoSize)
+            }
+            else if (pic_Result.SizeMode == PictureBoxSizeMode.AutoSize)
             {
                 pic_Result.SizeMode = PictureBoxSizeMode.Zoom;
             }
