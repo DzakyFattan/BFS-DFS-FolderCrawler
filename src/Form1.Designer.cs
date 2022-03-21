@@ -48,14 +48,16 @@
             this.label_SearchResult = new System.Windows.Forms.Label();
             this.panel_pb = new System.Windows.Forms.Panel();
             this.pic_Result = new System.Windows.Forms.PictureBox();
-            this.listBox_Result = new System.Windows.Forms.ListBox();
             this.label_ListResult = new System.Windows.Forms.Label();
             this.label_TimeSpent = new System.Windows.Forms.Label();
+            this.panel_ResultList = new System.Windows.Forms.Panel();
+            this.tlp_ResultList = new System.Windows.Forms.TableLayoutPanel();
             this.panel_Menu.SuspendLayout();
             this.panel_Logo.SuspendLayout();
             this.panel_Bar.SuspendLayout();
             this.panel_pb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).BeginInit();
+            this.panel_ResultList.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_ChooseFolder
@@ -314,6 +316,7 @@
             // 
             // pic_Result
             // 
+            this.pic_Result.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pic_Result.Location = new System.Drawing.Point(0, 0);
             this.pic_Result.Name = "pic_Result";
             this.pic_Result.Size = new System.Drawing.Size(1024, 382);
@@ -321,19 +324,6 @@
             this.pic_Result.TabIndex = 0;
             this.pic_Result.TabStop = false;
             this.pic_Result.Click += new System.EventHandler(this.pic_Result_Click);
-            // 
-            // listBox_Result
-            // 
-            this.listBox_Result.BackColor = System.Drawing.SystemColors.Control;
-            this.listBox_Result.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox_Result.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox_Result.FormattingEnabled = true;
-            this.listBox_Result.ItemHeight = 18;
-            this.listBox_Result.Location = new System.Drawing.Point(247, 509);
-            this.listBox_Result.Name = "listBox_Result";
-            this.listBox_Result.Size = new System.Drawing.Size(1005, 144);
-            this.listBox_Result.TabIndex = 19;
-            this.listBox_Result.Visible = false;
             // 
             // label_ListResult
             // 
@@ -355,6 +345,28 @@
             this.label_TimeSpent.Size = new System.Drawing.Size(0, 21);
             this.label_TimeSpent.TabIndex = 21;
             // 
+            // panel_ResultList
+            // 
+            this.panel_ResultList.Controls.Add(this.tlp_ResultList);
+            this.panel_ResultList.Location = new System.Drawing.Point(251, 506);
+            this.panel_ResultList.Name = "panel_ResultList";
+            this.panel_ResultList.Size = new System.Drawing.Size(1001, 163);
+            this.panel_ResultList.TabIndex = 22;
+            // 
+            // tlp_ResultList
+            // 
+            this.tlp_ResultList.AutoScroll = true;
+            this.tlp_ResultList.AutoSize = true;
+            this.tlp_ResultList.ColumnCount = 1;
+            this.tlp_ResultList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlp_ResultList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlp_ResultList.Location = new System.Drawing.Point(0, 0);
+            this.tlp_ResultList.Name = "tlp_ResultList";
+            this.tlp_ResultList.RowCount = 1;
+            this.tlp_ResultList.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlp_ResultList.Size = new System.Drawing.Size(1001, 163);
+            this.tlp_ResultList.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Search;
@@ -363,9 +375,9 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel_ResultList);
             this.Controls.Add(this.label_TimeSpent);
             this.Controls.Add(this.label_ListResult);
-            this.Controls.Add(this.listBox_Result);
             this.Controls.Add(this.panel_pb);
             this.Controls.Add(this.panel_Bar);
             this.Controls.Add(this.panel_Menu);
@@ -382,6 +394,8 @@
             this.panel_Bar.PerformLayout();
             this.panel_pb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).EndInit();
+            this.panel_ResultList.ResumeLayout(false);
+            this.panel_ResultList.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,9 +423,10 @@
         private System.Windows.Forms.Label label_searchMethod;
         private System.Windows.Forms.Panel panel_pb;
         private System.Windows.Forms.PictureBox pic_Result;
-        private System.Windows.Forms.ListBox listBox_Result;
         private System.Windows.Forms.Label label_ListResult;
         private System.Windows.Forms.Label label_TimeSpent;
+        private System.Windows.Forms.Panel panel_ResultList;
+        private System.Windows.Forms.TableLayoutPanel tlp_ResultList;
     }
 }
 
