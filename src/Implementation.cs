@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.Msagl.Drawing;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     internal class Implementation
@@ -18,7 +19,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             root = dir;
         }
 
-        public void DFS(string input, out string fpath, ref Microsoft.Msagl.Drawing.Graph graphResult)
+        public void DFS(string input, out string fpath, ref Graph graphResult)
         {
             FileInfo[] files = null;
             DirectoryInfo[] subDirs = null;
@@ -40,8 +41,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     if (fpath != null)
                     {
                         // create tree with the root dir as root and all iterated subDir up to subDir with found file as subTree
-                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
                         subDirs = subDirs.Skip(1).ToArray();
                         foreach (DirectoryInfo restdir in subDirs)
                         {
@@ -51,8 +52,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     }
                     else
                     {
-                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
                     }
                     subDirs = subDirs.Skip(1).ToArray();
                 }
@@ -75,16 +76,16 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     {
                         fpath = fi.FullName;
                         // create tree with the root dir as root and all iterated files up to found file as leaves
-                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;  
-                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Blue;  
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
                         files = files.Skip(1).ToArray();
                         break;
                     }
                     else
                     {
-                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Red;
                     }
                     files = files.Skip(1).ToArray();
                 }
@@ -95,7 +96,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             }
         }
 
-        public void MultipleDFS(string input, ref string[] fpath, ref Microsoft.Msagl.Drawing.Graph graphResult)
+        public void MultipleDFS(string input, ref string[] fpath, ref Graph graphResult)
         {
             string[] lastPath;
             if (fpath != null)
@@ -124,18 +125,18 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     imp.MultipleDFS(input, ref fpath, ref graphResult);
                     if (fpath == null)
                     {
-                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
                     }
                     else if (lastPath == null && fpath != null || fpath.Length > lastPath.Length)
                     {
-                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
                     }
                     else
                     {
-                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
                     }
                 }
             }
@@ -162,62 +163,97 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         else {
                             fpath = fpath.Concat(new string[] {matchpath}).ToArray();
                         }
-                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
                     }
                     else
                     {
-                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Red;
                     }
                 }
             }
         }
-        //TODO : public BFS(string input) { } // Similar to DFS, different process
         
-        //Testing Main
-        /* static void Main(string[] args)
+        public void BFS(string input, out string fpath, ref Graph graphResult, ref DirectoryInfo[] dirQueue, ref Dictionary<(string,string),Edge> edgeMap, ref Dictionary<string,string> prevRoot)
         {
-            Test DFS 
-            string fpath;
-            Console.WriteLine("Masukkan nama file: ");
-            string input = Console.ReadLine();
-            DirectoryInfo di = new DirectoryInfo(@"D:");
-            if (di.Exists)
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+            fpath = null;
+            // Find all the subdirectories under this directory.
+            try
             {
-                Implementation imp = new Implementation(di);
-                if(imp.DFS(input, out fpath))
-                {
-                    Console.WriteLine(fpath);
-                    Console.WriteLine(Path.GetFileNameWithoutExtension(fpath));
-                }
-                else
-                {
-                    Console.WriteLine("File not found");
-                }
-            } */
-            
-            /* Test MultipleDFS
-            string[] fpath = null;
-            Console.WriteLine("Masukkan nama file: ");
-            string input = Console.ReadLine();
-            DirectoryInfo di = new DirectoryInfo(@"D:");
-            if (di.Exists)
+                subDirs = root.GetDirectories();
+            }
+            // Do nothing if error
+            catch (Exception) { }
+            // add every subDir to queue
+            if (subDirs != null)
             {
-                Implementation imp = new Implementation(di);
-                imp.MultipleDFS(input, ref fpath);
-                if(fpath != null){
-                    foreach (string outPath in fpath)
+                foreach (DirectoryInfo dirInfo in subDirs)
+                {
+                    Array.Resize(ref dirQueue, dirQueue.Length + 1);
+                    dirQueue[dirQueue.Length - 1] = dirInfo;
+                    edgeMap[(root.Name, dirInfo.Name)] = graphResult.AddEdge(root.Name, dirInfo.Name);
+                    prevRoot[dirInfo.Name] = root.Name;
+                } 
+            }
+            // If there's no more subdir then process through files
+            try
+            {
+                files = root.GetFiles("*.*");
+            }
+            // Skip error
+            catch (Exception) { }
+
+            if (files != null)
+            {
+                foreach (FileInfo fi in files)
+                {
+                    // Matching with the input file
+                    string matchname = fi.Name;
+                    if (matchname.Equals(input))
                     {
-                        Console.WriteLine(outPath);
+                        fpath = fi.FullName;
+                        // create tree with the root dir as root and all iterated files up to found file as leaves
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
+                        files = files.Skip(1).ToArray();
+                        foreach (FileInfo restFile in files)
+                        {
+                            graphResult.AddEdge(root.Name, restFile.Name);
+                        }
+                        edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
+                        graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                        return;
                     }
-                }
-                else
-                {
-                    Console.WriteLine("File not found");
+                    else
+                    {
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Red;
+                        files = files.Skip(1).ToArray();
+                    }           
                 }
             }
-        } */
+            // BFS
+            if (dirQueue != null)
+            {
+                foreach (DirectoryInfo dirInfo in dirQueue)
+                {
+                    Implementation imp = new Implementation(dirInfo);
+                    edgeMap[(prevRoot[dirInfo.Name], dirInfo.Name)].Attr.Color = Color.Red;
+                    graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
+                    dirQueue = dirQueue.Skip(1).ToArray();
+                    imp.BFS(input, out fpath, ref graphResult, ref dirQueue, ref edgeMap, ref prevRoot);
+                    if (fpath != null)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        //TODO MultipleBFS
     }
 }

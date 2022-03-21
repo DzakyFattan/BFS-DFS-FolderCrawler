@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.GraphViewerGdi;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     internal class Handler
@@ -32,13 +33,13 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         public static Bitmap GetResultDFS()
         {
-            Microsoft.Msagl.Drawing.Graph result = new Microsoft.Msagl.Drawing.Graph("");
+            Graph result = new Graph("");
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
                 Implementation imp = new Implementation(startDir);
                 imp.DFS(fileName, out resultPath, ref result);
-                Microsoft.Msagl.GraphViewerGdi.GraphRenderer resultRenderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(result);
+                GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
@@ -48,13 +49,13 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         }
         public static Bitmap GetResultMultDFS()
         {
-            Microsoft.Msagl.Drawing.Graph result = new Microsoft.Msagl.Drawing.Graph("");
+            Graph result = new Graph("");
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
                 Implementation imp = new Implementation(startDir);
                 imp.MultipleDFS(fileName, ref arrResultPath, ref result);
-                Microsoft.Msagl.GraphViewerGdi.GraphRenderer resultRenderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(result);
+                GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
@@ -64,13 +65,16 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         }
         public static Bitmap GetResultBFS()
         {
-            Microsoft.Msagl.Drawing.Graph result = new Microsoft.Msagl.Drawing.Graph("");
+            Dictionary<(string, string), Edge> edgeMap = new Dictionary<(string, string), Edge>();
+            Dictionary<string, string> prevRoot = new Dictionary<string, string>();
+            DirectoryInfo[] dirQueue = new DirectoryInfo[0];
+            Graph result = new Graph("");
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
                 Implementation imp = new Implementation(startDir);
-                imp.MultipleDFS(fileName, ref arrResultPath, ref result);
-                Microsoft.Msagl.GraphViewerGdi.GraphRenderer resultRenderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(result);
+                imp.BFS(fileName, out resultPath, ref result, ref dirQueue, ref edgeMap, ref prevRoot);
+                GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
@@ -80,13 +84,13 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         }
         public static Bitmap GetResultMultBFS()
         {
-            Microsoft.Msagl.Drawing.Graph result = new Microsoft.Msagl.Drawing.Graph("");
+            Graph result = new Graph("");
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
                 Implementation imp = new Implementation(startDir);
                 imp.MultipleDFS(fileName, ref arrResultPath, ref result);
-                Microsoft.Msagl.GraphViewerGdi.GraphRenderer resultRenderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(result);
+                GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
