@@ -29,23 +29,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             }
             return location;
         }
-        public static string[] DirToArrayOfString()
-        {
-            string location = Regex.Replace(rootFolder, @"\\", @"\\");
-            int index = location.LastIndexOf("\\");
-            string[] parentFolder = { location.Substring(index + 1, (location.Length - index - 1)) };
-            Console.WriteLine(parentFolder[0]);
-            string[] entries = Directory.GetFileSystemEntries(location, "*", SearchOption.AllDirectories);
-            string[] ListPath = new string[1 + entries.Length];
-            parentFolder.CopyTo(ListPath, 0);
-            entries.CopyTo(ListPath, 1);
 
-            for (int i = 1; i < ListPath.Count(); i++)
-            {
-                ListPath[i] = ListPath[i].Remove(0, index + 1);
-            }
-            return ListPath;
-        }
         public static Bitmap GetResultDFS()
         {
             Microsoft.Msagl.Drawing.Graph result = new Microsoft.Msagl.Drawing.Graph("");

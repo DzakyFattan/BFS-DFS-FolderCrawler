@@ -134,7 +134,6 @@
             this.cb_FindAllDataOccurance.TabIndex = 6;
             this.cb_FindAllDataOccurance.Text = "Find All Data Occurance";
             this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
-            this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
             // 
             // label_MetodePencarian
             // 

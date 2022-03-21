@@ -42,11 +42,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_searchMethod.Text = null;
         }
 
-        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
-        {
-            findAllOccurence = true;
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             // Start Search
@@ -57,7 +52,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 picBoxHeight = pic_Result.Size.Height;
                 if(searchMode == "DFS")
                 {
-                    if (findAllOccurence)
+                    if (cb_FindAllDataOccurance.Checked)
                     {
                         pic_Result.Image = GetResultMultDFS();
                     }
@@ -67,7 +62,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     }
                 } else if (searchMode == "BFS")
                 {
-                    if (findAllOccurence)
+                    if (cb_FindAllDataOccurance.Checked)
                     {
                         pic_Result.Image = GetResultMultBFS();
                     }
