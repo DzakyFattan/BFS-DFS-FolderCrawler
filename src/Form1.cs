@@ -55,7 +55,27 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 int ms = DateTime.Now.Millisecond;
                 picBoxWidth = pic_Result.Size.Width;
                 picBoxHeight = pic_Result.Size.Height;
-                pic_Result.Image = GetResult();
+                if(searchMode == "DFS")
+                {
+                    if (findAllOccurence)
+                    {
+                        pic_Result.Image = GetResultMultDFS();
+                    }
+                    else
+                    {
+                        pic_Result.Image = GetResultDFS();
+                    }
+                } else if (searchMode == "BFS")
+                {
+                    if (findAllOccurence)
+                    {
+                        pic_Result.Image = GetResultMultBFS();
+                    }
+                    else
+                    {
+                        pic_Result.Image = GetResultBFS();
+                    }
+                } else { pic_Result.Image = null; }           
                 if (pic_Result.Image != null)
                 {
                     label_ListResult.ForeColor = Color.Black;
@@ -103,11 +123,13 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_searchMethod.Text = null;
             searchMode = null;
             cb_FindAllDataOccurance.Checked = false;
+            findAllOccurence = false;
             opt_BFS.Checked = false;
             opt_DFS.Checked = false;
             listBox_Result.Visible = false;
             label_ListResult.Text = null;
             label_ListResult.ForeColor = Color.Black;
+            label_TimeSpent.Text = null;
         }
 
         private void pic_Result_Click(object sender, EventArgs e)
