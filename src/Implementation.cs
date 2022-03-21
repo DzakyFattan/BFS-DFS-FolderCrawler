@@ -2,9 +2,6 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Msagl;
 namespace Tubes2Stima_DeathFromStima_FolderCrawler
 {
     internal class Implementation
@@ -21,7 +18,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             root = dir;
         }
 
-        public bool DFS(string input, out string fpath, ref Microsoft.Msagl.Drawing.Graph graphResult)
+        public void DFS(string input, out string fpath, ref Microsoft.Msagl.Drawing.Graph graphResult)
         {
             FileInfo[] files = null;
             DirectoryInfo[] subDirs = null;
@@ -36,29 +33,28 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             // Recursive for every subDirectory (DFS)
             if (subDirs != null)
             {
-                List<string> TempDirInfo = new List<string>();
                 foreach (DirectoryInfo dirInfo in subDirs)
                 {
                     Implementation imp = new Implementation(dirInfo);
-                    if (imp.DFS(input, out fpath, ref graphResult))
+                    imp.DFS(input, out fpath, ref graphResult);
+                    if (fpath != null)
                     {
                         // create tree with the root dir as root and all iterated subDir up to subDir with found file as subTree
                         graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
                         graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        for (int i = TempDirInfo.Count - 1; i >= 0; i--)
+                        subDirs = subDirs.Skip(1).ToArray();
+                        foreach (DirectoryInfo restdir in subDirs)
                         {
-                            graphResult.AddEdge(root.Name, TempDirInfo[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                            graphResult.FindNode(TempDirInfo[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            graphResult.AddEdge(root.Name, restdir.Name);
                         }
-                        return true;
+                        return;
                     }
-                    TempDirInfo.Add(dirInfo.Name);
-                }
-                // create tree with the root dir as root and all subDir as subTree, if not found
-                for (int i = TempDirInfo.Count - 1; i >= 0; i--)
-                {
-                    graphResult.AddEdge(root.Name, TempDirInfo[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                    graphResult.FindNode(TempDirInfo[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    else
+                    {
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    }
+                    subDirs = subDirs.Skip(1).ToArray();
                 }
             }
             // If there's no more subdir then process through files
@@ -71,10 +67,8 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
             if (files != null)
             {
-                // create temporary list to store filename before the result
-                List<string> tempFileList = new List<string>();
                 foreach (FileInfo fi in files)
-                {
+                {    
                     // Matching with the input file
                     string matchname = fi.Name;
                     Console.WriteLine(matchname + " " + input);
@@ -83,29 +77,23 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         fpath = fi.FullName;
                         // create tree with the root dir as root and all iterated files up to found file as leaves
                         graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        for (int i = tempFileList.Count - 1; i >= 0; i--)
-                        {
-                            graphResult.AddEdge(root.Name, tempFileList[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                            graphResult.FindNode(tempFileList[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        }
+                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;  
                         graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
-                        return true;
+                        files = files.Skip(1).ToArray();
+                        break;
                     }
                     else
                     {
-                        tempFileList.Add(matchname);
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     }
+                    files = files.Skip(1).ToArray();
                 }
-                // create tree with the root dir as root and all files as leaves, if not found
-                for (int i = tempFileList.Count - 1; i >= 0; i--)
+                foreach (FileInfo fi in files)
                 {
-                    graphResult.AddEdge(root.Name, tempFileList[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                    graphResult.FindNode(tempFileList[i]).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    graphResult.AddEdge(root.Name, fi.Name);
                 }
-                graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
             }
-            return false;
         }
 
         public void MultipleDFS(string input, ref string[] fpath)
