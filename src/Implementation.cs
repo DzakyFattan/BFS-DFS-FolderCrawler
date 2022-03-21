@@ -71,7 +71,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 {    
                     // Matching with the input file
                     string matchname = fi.Name;
-                    Console.WriteLine(matchname + " " + input);
                     if (matchname.Equals(input))
                     {
                         fpath = fi.FullName;
@@ -96,8 +95,17 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             }
         }
 
-        public void MultipleDFS(string input, ref string[] fpath)
+        public void MultipleDFS(string input, ref string[] fpath, ref Microsoft.Msagl.Drawing.Graph graphResult)
         {
+            string[] lastPath;
+            if (fpath != null)
+            {
+                lastPath = new string[fpath.Length];
+                Array.Copy(fpath, lastPath, fpath.Length);
+            } else
+            {
+                lastPath = null;
+            }
             FileInfo[] files = null;
             DirectoryInfo[] subDirs = null;
             // Find all the subdirectories under this directory.
@@ -113,7 +121,22 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 foreach (DirectoryInfo dirInfo in subDirs)
                 {
                     Implementation imp = new Implementation(dirInfo);
-                    imp.MultipleDFS(input, ref fpath);
+                    imp.MultipleDFS(input, ref fpath, ref graphResult);
+                    if (fpath == null)
+                    {
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    }
+                    else if (lastPath == null && fpath != null || fpath.Length > lastPath.Length)
+                    {
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                    }
+                    else
+                    {
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    }
                 }
             }
             // If there's no more subdir then process through files
@@ -130,7 +153,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 {
                     // Matching with the input file
                     string matchpath = fi.FullName;
-                    string matchname = Path.GetFileNameWithoutExtension(matchpath);
+                    string matchname = fi.Name;
                     if (matchname.Equals(input))
                     {
                         if (fpath == null){
@@ -139,6 +162,14 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         else {
                             fpath = fpath.Concat(new string[] {matchpath}).ToArray();
                         }
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                    }
+                    else
+                    {
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     }
                 }
             }
