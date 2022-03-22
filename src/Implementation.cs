@@ -266,6 +266,100 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 graphResult.FindNode(root.Name).Attr.Color = Color.Red;
             }
         }
-        //TODO MultipleBFS
+        public void MultipleBFS(string input, ref string[] fpath, ref Graph graphResult, ref DirectoryInfo[] dirQueue, ref Dictionary<(string, string), Edge> edgeMap, ref Dictionary<string, string> prevRoot)
+        {
+
+            string[] lastPath;
+            if (fpath != null)
+            {
+                lastPath = new string[fpath.Length];
+                Array.Copy(fpath, lastPath, fpath.Length);
+            }
+            else
+            {
+                lastPath = null;
+            }
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+            // Find all the subdirectories under this directory.
+            try
+            {
+                subDirs = root.GetDirectories();
+            }
+            // Do nothing if error
+            catch (Exception) { }
+            // add every subDir to queue
+            if (subDirs != null)
+            {
+
+                foreach (DirectoryInfo dirInfo in subDirs)
+                {
+                    Array.Resize(ref dirQueue, dirQueue.Length + 1);
+                    dirQueue[dirQueue.Length - 1] = dirInfo;
+                    edgeMap[(root.Name, dirInfo.Name)] = graphResult.AddEdge(root.Name, dirInfo.Name);
+                    prevRoot[dirInfo.Name] = root.Name;
+                }
+                
+            }
+            // If there's no more subdir then process through files
+            try
+            {
+                files = root.GetFiles("*.*");
+            }
+            // Skip error
+            catch (Exception) { }
+
+            if (files != null)
+            {
+                foreach (FileInfo fi in files)
+                {
+                    // Matching with the input file
+                    string matchpath = fi.FullName;
+                    string matchname = fi.Name;
+                    if (matchname.Equals(input))
+                    {
+                        if (fpath == null)
+                        {
+                            fpath = new string[] { matchpath };
+                        }
+                        else
+                        {
+                            fpath = fpath.Concat(new string[] { matchpath }).ToArray();
+                        }
+                        // create tree with the root dir as root and all iterated files up to found file as leaves
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
+                        edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
+                        graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                    }
+                    else
+                    {
+                        graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Red;
+                        graphResult.FindNode(matchname).Attr.Color = Color.Red;
+                    }
+                }
+            }
+            // BFS
+            if (dirQueue != null)
+            {
+                foreach (DirectoryInfo dirInfo in dirQueue)
+                {
+                    Implementation imp = new Implementation(dirInfo);
+                    edgeMap[(prevRoot[dirInfo.Name], dirInfo.Name)].Attr.Color = Color.Red;
+                    graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
+                    dirQueue = dirQueue.Skip(1).ToArray();
+                    imp.MultipleBFS(input, ref fpath, ref graphResult, ref dirQueue, ref edgeMap, ref prevRoot);
+                    if (fpath != null)
+                    {
+                        return;
+                    }
+                }
+            }
+            if (graphResult.FindNode(root.Name) != null && graphResult.FindNode(root.Name).Attr.Color != Color.Blue)
+            {
+                graphResult.FindNode(root.Name).Attr.Color = Color.Red;
+            }
+        }
     }
 }
