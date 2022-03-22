@@ -52,12 +52,14 @@
             this.label_TimeSpent = new System.Windows.Forms.Label();
             this.panel_ResultList = new System.Windows.Forms.Panel();
             this.tlp_ResultList = new System.Windows.Forms.TableLayoutPanel();
+            this.panel_loc = new System.Windows.Forms.Panel();
             this.panel_Menu.SuspendLayout();
             this.panel_Logo.SuspendLayout();
             this.panel_Bar.SuspendLayout();
             this.panel_pb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).BeginInit();
             this.panel_ResultList.SuspendLayout();
+            this.panel_loc.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_ChooseFolder
@@ -94,6 +96,7 @@
             // 
             // tB_InputFile
             // 
+            this.tB_InputFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tB_InputFile.Location = new System.Drawing.Point(16, 244);
             this.tB_InputFile.Name = "tB_InputFile";
             this.tB_InputFile.Size = new System.Drawing.Size(181, 20);
@@ -115,6 +118,7 @@
             // 
             // label_InputFile
             // 
+            this.label_InputFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_InputFile.AutoSize = true;
             this.label_InputFile.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_InputFile.ForeColor = System.Drawing.SystemColors.HighlightText;
@@ -127,6 +131,7 @@
             // 
             // cb_FindAllDataOccurance
             // 
+            this.cb_FindAllDataOccurance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cb_FindAllDataOccurance.AutoSize = true;
             this.cb_FindAllDataOccurance.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
@@ -139,6 +144,7 @@
             // 
             // label_MetodePencarian
             // 
+            this.label_MetodePencarian.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_MetodePencarian.AutoSize = true;
             this.label_MetodePencarian.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_MetodePencarian.ForeColor = System.Drawing.SystemColors.HighlightText;
@@ -150,6 +156,7 @@
             // 
             // opt_DFS
             // 
+            this.opt_DFS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.opt_DFS.AutoSize = true;
             this.opt_DFS.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opt_DFS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -164,6 +171,7 @@
             // 
             // opt_BFS
             // 
+            this.opt_BFS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.opt_BFS.AutoSize = true;
             this.opt_BFS.Font = new System.Drawing.Font("Montserrat Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.opt_BFS.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -178,6 +186,7 @@
             // 
             // btn_Search
             // 
+            this.btn_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_Search.BackColor = System.Drawing.Color.DarkTurquoise;
             this.btn_Search.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Search.FlatAppearance.BorderSize = 0;
@@ -198,8 +207,8 @@
             this.loc.BackColor = System.Drawing.Color.Transparent;
             this.loc.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loc.ForeColor = System.Drawing.Color.White;
-            this.loc.Location = new System.Drawing.Point(12, 148);
-            this.loc.MaximumSize = new System.Drawing.Size(220, 200);
+            this.loc.Location = new System.Drawing.Point(9, 0);
+            this.loc.MaximumSize = new System.Drawing.Size(200, 400);
             this.loc.Name = "loc";
             this.loc.Size = new System.Drawing.Size(74, 21);
             this.loc.TabIndex = 15;
@@ -209,10 +218,10 @@
             // panel_Menu
             // 
             this.panel_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panel_Menu.Controls.Add(this.panel_loc);
             this.panel_Menu.Controls.Add(this.label_searchMethod);
             this.panel_Menu.Controls.Add(this.label_fileName);
             this.panel_Menu.Controls.Add(this.btn_Reset);
-            this.panel_Menu.Controls.Add(this.loc);
             this.panel_Menu.Controls.Add(this.panel_Logo);
             this.panel_Menu.Controls.Add(this.tB_InputFile);
             this.panel_Menu.Controls.Add(this.cb_FindAllDataOccurance);
@@ -231,6 +240,7 @@
             // 
             // label_searchMethod
             // 
+            this.label_searchMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_searchMethod.AutoSize = true;
             this.label_searchMethod.BackColor = System.Drawing.Color.Transparent;
             this.label_searchMethod.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -244,6 +254,7 @@
             // 
             // label_fileName
             // 
+            this.label_fileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_fileName.AutoSize = true;
             this.label_fileName.BackColor = System.Drawing.Color.Transparent;
             this.label_fileName.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -257,6 +268,7 @@
             // 
             // btn_Reset
             // 
+            this.btn_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btn_Reset.BackColor = System.Drawing.Color.DarkTurquoise;
             this.btn_Reset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Reset.FlatAppearance.BorderSize = 0;
@@ -359,13 +371,23 @@
             this.tlp_ResultList.AutoSize = true;
             this.tlp_ResultList.ColumnCount = 1;
             this.tlp_ResultList.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlp_ResultList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlp_ResultList.Location = new System.Drawing.Point(0, 0);
             this.tlp_ResultList.Name = "tlp_ResultList";
             this.tlp_ResultList.RowCount = 1;
             this.tlp_ResultList.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlp_ResultList.Size = new System.Drawing.Size(1001, 163);
             this.tlp_ResultList.TabIndex = 0;
+            // 
+            // panel_loc
+            // 
+            this.panel_loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel_loc.AutoScroll = true;
+            this.panel_loc.Controls.Add(this.loc);
+            this.panel_loc.Location = new System.Drawing.Point(3, 151);
+            this.panel_loc.Name = "panel_loc";
+            this.panel_loc.Size = new System.Drawing.Size(237, 66);
+            this.panel_loc.TabIndex = 19;
             // 
             // Form1
             // 
@@ -396,6 +418,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).EndInit();
             this.panel_ResultList.ResumeLayout(false);
             this.panel_ResultList.PerformLayout();
+            this.panel_loc.ResumeLayout(false);
+            this.panel_loc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,6 +451,7 @@
         private System.Windows.Forms.Label label_TimeSpent;
         private System.Windows.Forms.Panel panel_ResultList;
         private System.Windows.Forms.TableLayoutPanel tlp_ResultList;
+        private System.Windows.Forms.Panel panel_loc;
     }
 }
 
