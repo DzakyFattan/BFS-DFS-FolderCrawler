@@ -44,6 +44,9 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // clear previous result
+            resultPath = null;
+            arrResultPath = null;
             // Start Search
             if (rootFolder != null && fileName != null && searchMode != null)
             {
@@ -80,15 +83,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 }
                 label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
 
-                if (tlp_ResultList.Controls.Count > 0)
-                {
-                    for (int i = tlp_ResultList.Controls.Count - 1; i >= 0; --i)
-                        tlp_ResultList.Controls[i].Dispose();
-
-                    tlp_ResultList.Controls.Clear();
-                    tlp_ResultList.RowCount = 0;
-                }
-
                 if (pic_Result.Image != null)
                 {
                     label_ListResult.ForeColor = Color.Black;
@@ -97,14 +91,16 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     {
                         if (arrResultPath != null)
                         {
+                            ClearResultList();
                             foreach (string path in arrResultPath)
                             {
                                 LinkLabel lbl = new LinkLabel();
                                 lbl.Text = $@"{path}";
-                                lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                                lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
                                 lbl.Size = new System.Drawing.Size(700, 21);
                                 lbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resultLink_LinkClicked);
                                 Console.WriteLine(lbl.Text);
+                                tlp_ResultList.Visible = true;
                                 tlp_ResultList.Controls.Add(lbl);
                             }
                         }
@@ -112,9 +108,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         {
                             Label errormsg = new Label();
                             errormsg.Text = "File tidak ditemukan";
-                            errormsg.Size = new System.Drawing.Size(120, 20);
+                            errormsg.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
+                            errormsg.Size = new System.Drawing.Size(200, 20);
                             errormsg.ForeColor = Color.Red;
                             errormsg.BackColor = this.BackColor;
+                            ClearResultList();
                             tlp_ResultList.Visible = true;
                             tlp_ResultList.Controls.Add(errormsg);
                         }
@@ -127,14 +125,18 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                             lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                             lbl.Size = new System.Drawing.Size(800, 21);
                             lbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resultLink_LinkClicked);
+                            ClearResultList();
+                            tlp_ResultList.Visible = true;
                             tlp_ResultList.Controls.Add(lbl);
                         } else
                         {
                             Label errormsg = new Label();
                             errormsg.Text = "File tidak ditemukan";
-                            errormsg.Size = new System.Drawing.Size(120, 20);
+                            errormsg.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
+                            errormsg.Size = new System.Drawing.Size(200, 20);
                             errormsg.ForeColor = Color.Red;
                             errormsg.BackColor = this.BackColor;
+                            ClearResultList();
                             tlp_ResultList.Visible = true;
                             tlp_ResultList.Controls.Add(errormsg);
                         }
@@ -201,6 +203,18 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             tlp_ResultList.Controls.Clear();
             tlp_ResultList.RowCount = 0;
             tlp_ResultList.Visible = false;
+        }
+
+        private void ClearResultList()
+        {
+            if (tlp_ResultList.Controls.Count > 0)
+            {
+                for (int i = tlp_ResultList.Controls.Count - 1; i >= 0; --i)
+                    tlp_ResultList.Controls[i].Dispose();
+
+                tlp_ResultList.Controls.Clear();
+                tlp_ResultList.RowCount = 0;
+            }
         }
 
         private void pic_Result_Click(object sender, EventArgs e)

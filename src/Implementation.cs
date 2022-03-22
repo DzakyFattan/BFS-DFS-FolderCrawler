@@ -94,6 +94,10 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     graphResult.AddEdge(root.Name, fi.Name);
                 }
             }
+            if (graphResult.FindNode(root.Name) != null && graphResult.FindNode(root.Name).Attr.Color != Color.Blue)
+            {
+                graphResult.FindNode(root.Name).Attr.Color = Color.Red;
+            }
         }
 
         public void MultipleDFS(string input, ref string[] fpath, ref Graph graphResult)
@@ -174,6 +178,10 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     }
                 }
             }
+            if (graphResult.FindNode(root.Name) != null && graphResult.FindNode(root.Name).Attr.Color != Color.Blue)
+            {
+                graphResult.FindNode(root.Name).Attr.Color = Color.Red;
+            }
         }
         
         public void BFS(string input, out string fpath, ref Graph graphResult, ref DirectoryInfo[] dirQueue, ref Dictionary<(string,string),Edge> edgeMap, ref Dictionary<string,string> prevRoot)
@@ -252,6 +260,10 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         return;
                     }
                 }
+            }
+            if (graphResult.FindNode(root.Name) != null && graphResult.FindNode(root.Name).Attr.Color != Color.Blue)
+            {
+                graphResult.FindNode(root.Name).Attr.Color = Color.Red;
             }
         }
         //TODO MultipleBFS
