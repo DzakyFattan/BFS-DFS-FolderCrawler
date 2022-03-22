@@ -97,7 +97,7 @@
             // tB_InputFile
             // 
             this.tB_InputFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tB_InputFile.Location = new System.Drawing.Point(16, 244);
+            this.tB_InputFile.Location = new System.Drawing.Point(16, 285);
             this.tB_InputFile.Name = "tB_InputFile";
             this.tB_InputFile.Size = new System.Drawing.Size(181, 20);
             this.tB_InputFile.TabIndex = 2;
@@ -122,7 +122,7 @@
             this.label_InputFile.AutoSize = true;
             this.label_InputFile.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_InputFile.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label_InputFile.Location = new System.Drawing.Point(12, 220);
+            this.label_InputFile.Location = new System.Drawing.Point(12, 261);
             this.label_InputFile.Name = "label_InputFile";
             this.label_InputFile.Size = new System.Drawing.Size(114, 21);
             this.label_InputFile.TabIndex = 5;
@@ -135,12 +135,13 @@
             this.cb_FindAllDataOccurance.AutoSize = true;
             this.cb_FindAllDataOccurance.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 301);
+            this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 469);
             this.cb_FindAllDataOccurance.Name = "cb_FindAllDataOccurance";
-            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(185, 25);
+            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(177, 25);
             this.cb_FindAllDataOccurance.TabIndex = 6;
-            this.cb_FindAllDataOccurance.Text = "Find All Data Occurance";
+            this.cb_FindAllDataOccurance.Text = "Find All File Occurance";
             this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
+            this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
             // 
             // label_MetodePencarian
             // 
@@ -193,7 +194,7 @@
             this.btn_Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Search.Font = new System.Drawing.Font("Montserrat Medium", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Search.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_Search.Location = new System.Drawing.Point(48, 489);
+            this.btn_Search.Location = new System.Drawing.Point(48, 542);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(144, 34);
             this.btn_Search.TabIndex = 10;
@@ -259,7 +260,7 @@
             this.label_fileName.BackColor = System.Drawing.Color.Transparent;
             this.label_fileName.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_fileName.ForeColor = System.Drawing.Color.White;
-            this.label_fileName.Location = new System.Drawing.Point(12, 267);
+            this.label_fileName.Location = new System.Drawing.Point(12, 308);
             this.label_fileName.MaximumSize = new System.Drawing.Size(220, 200);
             this.label_fileName.Name = "label_fileName";
             this.label_fileName.Size = new System.Drawing.Size(0, 21);
@@ -275,7 +276,7 @@
             this.btn_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Reset.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Reset.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_Reset.Location = new System.Drawing.Point(48, 553);
+            this.btn_Reset.Location = new System.Drawing.Point(48, 606);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(144, 34);
             this.btn_Reset.TabIndex = 16;
@@ -386,7 +387,7 @@
             this.panel_loc.Controls.Add(this.loc);
             this.panel_loc.Location = new System.Drawing.Point(3, 151);
             this.panel_loc.Name = "panel_loc";
-            this.panel_loc.Size = new System.Drawing.Size(237, 66);
+            this.panel_loc.Size = new System.Drawing.Size(237, 107);
             this.panel_loc.TabIndex = 19;
             // 
             // Form1

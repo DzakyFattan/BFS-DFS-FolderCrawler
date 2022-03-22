@@ -228,5 +228,10 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 pic_Result.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
+
+        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
