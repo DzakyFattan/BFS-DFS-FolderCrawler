@@ -233,8 +233,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         {
                             graphResult.AddEdge(root.Name, restFile.Name);
                         }
-                        edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
-                        graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                        if (prevRoot.ContainsKey(root.Name))
+                        {
+                            edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
+                            graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                        }
                         return;
                     }
                     else
@@ -330,8 +333,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                         graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Blue;
                         graphResult.FindNode(matchname).Attr.Color = Color.Blue;
                         graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
-                        edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
-                        graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                        if (prevRoot.ContainsKey(root.Name))
+                        {
+                            edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Blue;
+                            graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Blue;
+                        }
                     }
                     else
                     {
