@@ -85,7 +85,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                             lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
                             lbl.Size = new System.Drawing.Size(700, 21);
                             lbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resultLink_LinkClicked);
-                            Console.WriteLine(lbl.Text);
                             tlp_ResultList.Visible = true;
                             tlp_ResultList.Controls.Add(lbl);
                         }
@@ -133,7 +132,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             LinkLabel linkLabel = sender as LinkLabel;
             int index = linkLabel.Text.LastIndexOf("\\");
             string openFolder = linkLabel.Text.Substring(0, index);
-            Console.WriteLine(openFolder);
             System.Diagnostics.Process.Start($@"{openFolder}");
         }
 
