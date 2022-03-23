@@ -269,6 +269,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 graphResult.FindNode(root.Name).Attr.Color = Color.Red;
             }
         }
+        
         public void MultipleBFS(string input, ref string[] fpath, ref Graph graphResult, ref DirectoryInfo[] dirQueue, ref Dictionary<(string, string), Edge> edgeMap, ref Dictionary<string, string> prevRoot)
         {
 
