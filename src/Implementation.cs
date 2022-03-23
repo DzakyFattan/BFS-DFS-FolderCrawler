@@ -32,20 +32,16 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         public void DFS(ref Graph graphResult, bool multiple)
         {
+            graphResult.AddNode(root.Name);
             FileInfo[] files = null;
             DirectoryInfo[] subDirs = null;
             string[] lastPath = null;
             if (multiple)
             {
-                
                 if (resultPath != null)
                 {
                     lastPath = new string[resultPath.Length];
-                    Array.Copy(resultPath, lastPath, resultPath.Length);
-                }
-                else
-                {
-                    lastPath = null;
+                    resultPath.CopyTo(lastPath, 0);
                 }
             }
             // Find all the subdirectories under this directory.
@@ -62,13 +58,23 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                 {
                     Implementation imp = new Implementation(dirInfo, input, resultPath);
                     imp.DFS(ref graphResult, multiple);
-                    if (imp.ResultPath != null){
-                        this.resultPath = imp.ResultPath;
-                    }
-                    if (!multiple)
-                    {
-                        if (resultPath != null)
+                    if (imp.ResultPath != null && resultPath == null || resultPath != null && imp.ResultPath.Length > resultPath.Length){
+                        if (multiple)
                         {
+                            if (resultPath == null)
+                            {
+                                resultPath = imp.ResultPath;
+                            }
+                            else
+                            {
+                                resultPath.Concat(imp.ResultPath).ToArray();
+                            }
+                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
+                            graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
+                        }
+                        else
+                        {
+                            resultPath = imp.ResultPath;
                             // create tree with the root dir as root and all iterated subDir up to subDir with found file as subTree
                             graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
                             graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
@@ -76,32 +82,14 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                             foreach (DirectoryInfo restdir in subDirs)
                             {
                                 graphResult.AddEdge(root.Name, restdir.Name);
-                            }
+                            }                       
                             return;
-                        }
-                        else
-                        {
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
-                            graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
                         }
                     }
                     else
                     {
-                        if (resultPath == null)
-                        {
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
-                            graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
-                        }
-                        else if (lastPath == null && resultPath != null || resultPath.Length > lastPath.Length)
-                        {
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
-                            graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
-                        }
-                        else
-                        {
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
-                            graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
-                        }
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Red;
+                        graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
                     }
                     subDirs = subDirs.Skip(1).ToArray();
                 }
@@ -164,22 +152,9 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
         public void BFS(ref Graph graphResult, ref DirectoryInfo[] dirQueue, ref Dictionary<(string,string),Edge> edgeMap, ref Dictionary<string,string> prevRoot, bool multiple)
         {
+            graphResult.AddNode(root.Name);
             FileInfo[] files = null;
             DirectoryInfo[] subDirs = null;
-            /*
-            string[] lastPath = null;
-            if (multiple)
-            {
-                if (resultPath != null)
-                {
-                    lastPath = new string[resultPath.Length];
-                    Array.Copy(resultPath, lastPath, resultPath.Length);
-                }
-                else
-                {
-                    lastPath = null;
-                }
-            }*/
             // Find all the subdirectories under this directory.
             try
             {
@@ -246,29 +221,23 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     {
                         graphResult.AddEdge(root.Name, matchname).Attr.Color = Color.Red;
                         graphResult.FindNode(matchname).Attr.Color = Color.Red;
+                        if (prevRoot.ContainsKey(root.Name))
+                        {
+                            edgeMap[(prevRoot[root.Name], root.Name)].Attr.Color = Color.Red;
+                            graphResult.FindNode(prevRoot[root.Name]).Attr.Color = Color.Red;
+                        }
                         files = files.Skip(1).ToArray();
                     }           
                 }
             }
             // BFS
-            if (dirQueue != null)
+            if (dirQueue != null && dirQueue.Length > 0)
             {
-                foreach (DirectoryInfo dirInfo in dirQueue)
-                {
-                    Implementation imp = new Implementation(dirInfo,input,resultPath);
-                    edgeMap[(prevRoot[dirInfo.Name], dirInfo.Name)].Attr.Color = Color.Red;
-                    graphResult.FindNode(dirInfo.Name).Attr.Color = Color.Red;
-                    dirQueue = dirQueue.Skip(1).ToArray();
-                    imp.BFS(ref graphResult, ref dirQueue, ref edgeMap, ref prevRoot, multiple);
-                    if (imp.ResultPath != null)
-                    {
-                        this.resultPath = imp.ResultPath;
-                    }
-                    if (resultPath != null)
-                    {
-                        return;
-                    }
-                }
+                DirectoryInfo dirInfo = dirQueue[0];
+                Implementation imp = new Implementation(dirInfo,input,resultPath);
+                dirQueue = dirQueue.Skip(1).ToArray();
+                imp.BFS(ref graphResult, ref dirQueue, ref edgeMap, ref prevRoot, multiple);
+                resultPath = imp.ResultPath;
             }
             if (graphResult.FindNode(root.Name) != null && graphResult.FindNode(root.Name).Attr.Color != Color.Blue)
             {
