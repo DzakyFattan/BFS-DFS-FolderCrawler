@@ -1,6 +1,7 @@
 .vs
 
-src/bin/Debug
+src/obj/
+src/bin/
 src/packages
 src/.vs
 src/obj/Debug

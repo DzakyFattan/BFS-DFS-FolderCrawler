@@ -40,6 +40,7 @@
             this.btn_Search = new System.Windows.Forms.Button();
             this.loc = new System.Windows.Forms.Label();
             this.panel_Menu = new System.Windows.Forms.Panel();
+            this.panel_loc = new System.Windows.Forms.Panel();
             this.label_searchMethod = new System.Windows.Forms.Label();
             this.label_fileName = new System.Windows.Forms.Label();
             this.btn_Reset = new System.Windows.Forms.Button();
@@ -52,14 +53,13 @@
             this.label_TimeSpent = new System.Windows.Forms.Label();
             this.panel_ResultList = new System.Windows.Forms.Panel();
             this.tlp_ResultList = new System.Windows.Forms.TableLayoutPanel();
-            this.panel_loc = new System.Windows.Forms.Panel();
             this.panel_Menu.SuspendLayout();
+            this.panel_loc.SuspendLayout();
             this.panel_Logo.SuspendLayout();
             this.panel_Bar.SuspendLayout();
             this.panel_pb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).BeginInit();
             this.panel_ResultList.SuspendLayout();
-            this.panel_loc.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_ChooseFolder
@@ -99,7 +99,7 @@
             this.tB_InputFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tB_InputFile.Location = new System.Drawing.Point(16, 285);
             this.tB_InputFile.Name = "tB_InputFile";
-            this.tB_InputFile.Size = new System.Drawing.Size(181, 20);
+            this.tB_InputFile.Size = new System.Drawing.Size(209, 20);
             this.tB_InputFile.TabIndex = 2;
             this.tB_InputFile.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -137,9 +137,9 @@
             this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 469);
             this.cb_FindAllDataOccurance.Name = "cb_FindAllDataOccurance";
-            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(177, 25);
+            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(183, 25);
             this.cb_FindAllDataOccurance.TabIndex = 6;
-            this.cb_FindAllDataOccurance.Text = "Find All File Occurance";
+            this.cb_FindAllDataOccurance.Text = "Find All File Occurences";
             this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
             this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
             // 
@@ -238,6 +238,17 @@
             this.panel_Menu.Name = "panel_Menu";
             this.panel_Menu.Size = new System.Drawing.Size(240, 681);
             this.panel_Menu.TabIndex = 16;
+            // 
+            // panel_loc
+            // 
+            this.panel_loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel_loc.AutoScroll = true;
+            this.panel_loc.Controls.Add(this.loc);
+            this.panel_loc.Location = new System.Drawing.Point(3, 151);
+            this.panel_loc.Name = "panel_loc";
+            this.panel_loc.Size = new System.Drawing.Size(237, 107);
+            this.panel_loc.TabIndex = 19;
             // 
             // label_searchMethod
             // 
@@ -379,17 +390,6 @@
             this.tlp_ResultList.Size = new System.Drawing.Size(1001, 163);
             this.tlp_ResultList.TabIndex = 0;
             // 
-            // panel_loc
-            // 
-            this.panel_loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel_loc.AutoScroll = true;
-            this.panel_loc.Controls.Add(this.loc);
-            this.panel_loc.Location = new System.Drawing.Point(3, 151);
-            this.panel_loc.Name = "panel_loc";
-            this.panel_loc.Size = new System.Drawing.Size(237, 107);
-            this.panel_loc.TabIndex = 19;
-            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Search;
@@ -411,6 +411,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel_Menu.ResumeLayout(false);
             this.panel_Menu.PerformLayout();
+            this.panel_loc.ResumeLayout(false);
+            this.panel_loc.PerformLayout();
             this.panel_Logo.ResumeLayout(false);
             this.panel_Logo.PerformLayout();
             this.panel_Bar.ResumeLayout(false);
@@ -419,8 +421,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_Result)).EndInit();
             this.panel_ResultList.ResumeLayout(false);
             this.panel_ResultList.PerformLayout();
-            this.panel_loc.ResumeLayout(false);
-            this.panel_loc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
