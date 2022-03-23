@@ -49,7 +49,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             // Start Search
             if (rootFolder != null && fileName != null && searchMode != null)
             {
-                int ms = DateTime.Now.Millisecond;
+                float ms = DateTime.Now.Millisecond;
                 picBoxWidth = pic_Result.Size.Width;
                 picBoxHeight = pic_Result.Size.Height;
 
@@ -69,6 +69,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     ms = 0;
                 }
                 label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
+                ClearResultList();
 
                 if (pic_Result.Image != null)
                 {
@@ -76,7 +77,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     label_ListResult.Text = "Hasil Pencarian";
                     if (arrResultPath != null)
                     {
-                        ClearResultList();
+                        
                         foreach (string path in arrResultPath)
                         {
                             LinkLabel lbl = new LinkLabel();
@@ -106,8 +107,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     label_ListResult.Text = "Error";
                     label_ListResult.ForeColor = Color.Red;
                 }
-                
-
             }
             else
             {
@@ -156,12 +155,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_ListResult.Text = null;
             label_ListResult.ForeColor = Color.Black;
             label_TimeSpent.Text = null;
-            for (int i = tlp_ResultList.Controls.Count - 1; i >= 0; --i)
-                tlp_ResultList.Controls[i].Dispose();
-
-            tlp_ResultList.Controls.Clear();
-            tlp_ResultList.RowCount = 0;
-            tlp_ResultList.Visible = false;
+            ClearResultList();
         }
 
         private void ClearResultList()
