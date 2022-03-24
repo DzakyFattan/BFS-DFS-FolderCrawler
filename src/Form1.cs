@@ -45,36 +45,23 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         private void button2_Click(object sender, EventArgs e)
         {
             // clear previous result
-            resultPath = null;
             arrResultPath = null;
             // Start Search
             if (rootFolder != null && fileName != null && searchMode != null)
             {
-                int ms = DateTime.Now.Millisecond;
+                float ms = DateTime.Now.Millisecond;
                 picBoxWidth = pic_Result.Size.Width;
                 picBoxHeight = pic_Result.Size.Height;
 
                 if(searchMode == "DFS")
                 {
-                    if (cb_FindAllDataOccurance.Checked)
-                    {
-                        pic_Result.Image = GetResultMultDFS();
-                    }
-                    else
-                    {
-                        pic_Result.Image = GetResultDFS();
-                    }
-                } else if (searchMode == "BFS")
+                    (pic_Result.Image,arrResultPath) = GetResultDFS(cb_FindAllDataOccurance.Checked);
+                } 
+                else if (searchMode == "BFS")
                 {
-                    if (cb_FindAllDataOccurance.Checked)
-                    {
-                        pic_Result.Image = GetResultMultBFS();
-                    }
-                    else
-                    {
-                        pic_Result.Image = GetResultBFS();
-                    }
-                } else { pic_Result.Image = null; }
+                    (pic_Result.Image,arrResultPath) = GetResultBFS(cb_FindAllDataOccurance.Checked);
+                } 
+                else { pic_Result.Image = null; }
 
                 ms = DateTime.Now.Millisecond - ms;
                 if (ms < 0)
@@ -82,73 +69,43 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     ms = 0;
                 }
                 label_TimeSpent.Text = "Time Spent: " + ms.ToString() + " ms";
+                ClearResultList();
 
                 if (pic_Result.Image != null)
                 {
                     label_ListResult.ForeColor = Color.Black;
                     label_ListResult.Text = "Hasil Pencarian";
-                    if (cb_FindAllDataOccurance.Checked)
+                    if (arrResultPath != null)
                     {
-                        if (arrResultPath != null)
-                        {
-                            ClearResultList();
-                            foreach (string path in arrResultPath)
-                            {
-                                LinkLabel lbl = new LinkLabel();
-                                lbl.Text = $@"{path}";
-                                lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
-                                lbl.Size = new System.Drawing.Size(700, 21);
-                                lbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resultLink_LinkClicked);
-                                Console.WriteLine(lbl.Text);
-                                tlp_ResultList.Visible = true;
-                                tlp_ResultList.Controls.Add(lbl);
-                            }
-                        }
-                        else
-                        {
-                            Label errormsg = new Label();
-                            errormsg.Text = "File tidak ditemukan";
-                            errormsg.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
-                            errormsg.Size = new System.Drawing.Size(200, 20);
-                            errormsg.ForeColor = Color.Red;
-                            errormsg.BackColor = this.BackColor;
-                            ClearResultList();
-                            tlp_ResultList.Visible = true;
-                            tlp_ResultList.Controls.Add(errormsg);
-                        }
-                    } else
-                    {
-                        if (resultPath != null)
+                        
+                        foreach (string path in arrResultPath)
                         {
                             LinkLabel lbl = new LinkLabel();
-                            lbl.Text = resultPath;
-                            lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                            lbl.Size = new System.Drawing.Size(800, 21);
+                            lbl.Text = $@"{path}";
+                            lbl.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
+                            lbl.Size = new System.Drawing.Size(700, 21);
                             lbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resultLink_LinkClicked);
-                            ClearResultList();
                             tlp_ResultList.Visible = true;
                             tlp_ResultList.Controls.Add(lbl);
-                        } else
-                        {
-                            Label errormsg = new Label();
-                            errormsg.Text = "File tidak ditemukan";
-                            errormsg.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
-                            errormsg.Size = new System.Drawing.Size(200, 20);
-                            errormsg.ForeColor = Color.Red;
-                            errormsg.BackColor = this.BackColor;
-                            ClearResultList();
-                            tlp_ResultList.Visible = true;
-                            tlp_ResultList.Controls.Add(errormsg);
                         }
                     }
-
-                } else
+                    else
+                    {
+                        Label errormsg = new Label();
+                        errormsg.Text = "File tidak ditemukan";
+                        errormsg.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular);
+                        errormsg.Size = new System.Drawing.Size(200, 20);
+                        errormsg.ForeColor = Color.Red;
+                        errormsg.BackColor = this.BackColor;
+                        tlp_ResultList.Visible = true;
+                        tlp_ResultList.Controls.Add(errormsg);
+                    }
+                } 
+                else
                 {
                     label_ListResult.Text = "Error";
                     label_ListResult.ForeColor = Color.Red;
                 }
-                
-
             }
             else
             {
@@ -175,7 +132,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             LinkLabel linkLabel = sender as LinkLabel;
             int index = linkLabel.Text.LastIndexOf("\\");
             string openFolder = linkLabel.Text.Substring(0, index);
-            Console.WriteLine(openFolder);
             System.Diagnostics.Process.Start($@"{openFolder}");
         }
 
@@ -197,12 +153,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_ListResult.Text = null;
             label_ListResult.ForeColor = Color.Black;
             label_TimeSpent.Text = null;
-            for (int i = tlp_ResultList.Controls.Count - 1; i >= 0; --i)
-                tlp_ResultList.Controls[i].Dispose();
-
-            tlp_ResultList.Controls.Clear();
-            tlp_ResultList.RowCount = 0;
-            tlp_ResultList.Visible = false;
+            ClearResultList();
         }
 
         private void ClearResultList()

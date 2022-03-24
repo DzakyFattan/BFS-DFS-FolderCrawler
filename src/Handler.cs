@@ -13,7 +13,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
         public static string rootFolder;
         public static string fileName;
         public static string searchMode;
-        public static string resultPath;
         public static string[] arrResultPath;
         public static int picBoxWidth;
         public static int picBoxHeight;
@@ -31,39 +30,23 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             return location;
         }
 
-        public static Bitmap GetResultDFS()
+        public static (Bitmap,string[]) GetResultDFS(bool multiple)
         {
             Graph result = new Graph("");
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
-                Implementation imp = new Implementation(startDir);
-                imp.DFS(fileName, out resultPath, ref result);
+                Implementation imp = new Implementation(startDir,fileName, arrResultPath);
+                imp.DFS(ref result, multiple);
                 GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
-                return resultBitmap;
+                return (resultBitmap,imp.ResultPath);
             }
-            return null;
+            return (null,null);
         }
-        public static Bitmap GetResultMultDFS()
-        {
-            Graph result = new Graph("");
-            DirectoryInfo startDir = new DirectoryInfo(rootFolder);
-            if (startDir.Exists)
-            {
-                Implementation imp = new Implementation(startDir);
-                imp.MultipleDFS(fileName, ref arrResultPath, ref result);
-                GraphRenderer resultRenderer = new GraphRenderer(result);
-                resultRenderer.CalculateLayout();
-                Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
-                resultRenderer.Render(resultBitmap);
-                return resultBitmap;
-            }
-            return null;
-        }
-        public static Bitmap GetResultBFS()
+        public static (Bitmap, string[]) GetResultBFS(bool multiple)
         {
             Dictionary<(string, string), Edge> edgeMap = new Dictionary<(string, string), Edge>();
             Dictionary<string, string> prevRoot = new Dictionary<string, string>();
@@ -72,34 +55,15 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             DirectoryInfo startDir = new DirectoryInfo(rootFolder);
             if (startDir.Exists)
             {
-                Implementation imp = new Implementation(startDir);
-                imp.BFS(fileName, out resultPath, ref result, ref dirQueue, ref edgeMap, ref prevRoot);
+                Implementation imp = new Implementation(startDir, fileName, arrResultPath);
+                imp.BFS(ref result, ref dirQueue, ref edgeMap, ref prevRoot, multiple);
                 GraphRenderer resultRenderer = new GraphRenderer(result);
                 resultRenderer.CalculateLayout();
                 Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
                 resultRenderer.Render(resultBitmap);
-                return resultBitmap;
+                return (resultBitmap, imp.ResultPath);
             }
-            return null;
-        }
-        public static Bitmap GetResultMultBFS()
-        {
-            Dictionary<(string, string), Edge> edgeMap = new Dictionary<(string, string), Edge>();
-            Dictionary<string, string> prevRoot = new Dictionary<string, string>();
-            DirectoryInfo[] dirQueue = new DirectoryInfo[0];
-            Graph result = new Graph("");
-            DirectoryInfo startDir = new DirectoryInfo(rootFolder);
-            if (startDir.Exists)
-            {
-                Implementation imp = new Implementation(startDir);
-                imp.MultipleBFS(fileName, ref arrResultPath, ref result, ref dirQueue, ref edgeMap, ref prevRoot);
-                GraphRenderer resultRenderer = new GraphRenderer(result);
-                resultRenderer.CalculateLayout();
-                Bitmap resultBitmap = new Bitmap(Math.Max((int)result.Width, picBoxWidth), Math.Max((int)result.Height, picBoxHeight), PixelFormat.Format32bppPArgb);
-                resultRenderer.Render(resultBitmap);
-                return resultBitmap;
-            }
-            return null;
+            return (null, null);
         }
     }
 }

@@ -99,7 +99,7 @@
             this.tB_InputFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tB_InputFile.Location = new System.Drawing.Point(16, 285);
             this.tB_InputFile.Name = "tB_InputFile";
-            this.tB_InputFile.Size = new System.Drawing.Size(209, 20);
+            this.tB_InputFile.Size = new System.Drawing.Size(205, 20);
             this.tB_InputFile.TabIndex = 2;
             this.tB_InputFile.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -137,9 +137,9 @@
             this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 469);
             this.cb_FindAllDataOccurance.Name = "cb_FindAllDataOccurance";
-            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(183, 25);
+            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(188, 25);
             this.cb_FindAllDataOccurance.TabIndex = 6;
-            this.cb_FindAllDataOccurance.Text = "Find All File Occurences";
+            this.cb_FindAllDataOccurance.Text = "Find All File Occurrences";
             this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
             this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
             // 
@@ -340,7 +340,6 @@
             // 
             // pic_Result
             // 
-            this.pic_Result.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pic_Result.Location = new System.Drawing.Point(0, 0);
             this.pic_Result.Name = "pic_Result";
             this.pic_Result.Size = new System.Drawing.Size(1024, 382);
@@ -387,7 +386,7 @@
             this.tlp_ResultList.Name = "tlp_ResultList";
             this.tlp_ResultList.RowCount = 1;
             this.tlp_ResultList.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlp_ResultList.Size = new System.Drawing.Size(1001, 163);
+            this.tlp_ResultList.Size = new System.Drawing.Size(938, 163);
             this.tlp_ResultList.TabIndex = 0;
             // 
             // Form1
