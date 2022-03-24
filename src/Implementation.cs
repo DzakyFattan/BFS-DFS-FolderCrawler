@@ -91,7 +91,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             }
             // Skip error
             catch (Exception) { }
-
             if (files != null)
             {
                 foreach (FileInfo fi in files)
