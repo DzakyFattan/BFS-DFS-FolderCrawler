@@ -55,11 +55,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
                 if(searchMode == "DFS")
                 {
-                    (pic_Result.Image,arrResultPath) = GetResultDFS(cb_FindAllFileOccurrences.Checked);
+                    (pic_Result.Image,arrResultPath) = GetResultDFS(cb_FindAllDataOccurance.Checked);
                 } 
                 else if (searchMode == "BFS")
                 {
-                    (pic_Result.Image,arrResultPath) = GetResultBFS(cb_FindAllFileOccurrences.Checked);
+                    (pic_Result.Image,arrResultPath) = GetResultBFS(cb_FindAllDataOccurance.Checked);
                 } 
                 else { pic_Result.Image = null; }
 
