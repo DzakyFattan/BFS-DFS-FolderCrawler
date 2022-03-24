@@ -33,7 +33,7 @@
             this.tB_InputFile = new System.Windows.Forms.TextBox();
             this.lbl_ChooseStartDir = new System.Windows.Forms.Label();
             this.label_InputFile = new System.Windows.Forms.Label();
-            this.cb_FindAllDataOccurance = new System.Windows.Forms.CheckBox();
+            this.cb_FindAllFileOccurrences = new System.Windows.Forms.CheckBox();
             this.label_MetodePencarian = new System.Windows.Forms.Label();
             this.opt_DFS = new System.Windows.Forms.RadioButton();
             this.opt_BFS = new System.Windows.Forms.RadioButton();
@@ -129,19 +129,18 @@
             this.label_InputFile.Text = "Input File Name";
             this.label_InputFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cb_FindAllDataOccurance
+            // cb_FindAllFileOccurrences
             // 
-            this.cb_FindAllDataOccurance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cb_FindAllDataOccurance.AutoSize = true;
-            this.cb_FindAllDataOccurance.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_FindAllDataOccurance.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.cb_FindAllDataOccurance.Location = new System.Drawing.Point(16, 469);
-            this.cb_FindAllDataOccurance.Name = "cb_FindAllDataOccurance";
-            this.cb_FindAllDataOccurance.Size = new System.Drawing.Size(188, 25);
-            this.cb_FindAllDataOccurance.TabIndex = 6;
-            this.cb_FindAllDataOccurance.Text = "Find All File Occurrences";
-            this.cb_FindAllDataOccurance.UseVisualStyleBackColor = true;
-            this.cb_FindAllDataOccurance.CheckedChanged += new System.EventHandler(this.cb_FindAllDataOccurance_CheckedChanged);
+            this.cb_FindAllFileOccurrences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cb_FindAllFileOccurrences.AutoSize = true;
+            this.cb_FindAllFileOccurrences.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_FindAllFileOccurrences.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.cb_FindAllFileOccurrences.Location = new System.Drawing.Point(16, 469);
+            this.cb_FindAllFileOccurrences.Name = "cb_FindAllFileOccurrences";
+            this.cb_FindAllFileOccurrences.Size = new System.Drawing.Size(188, 25);
+            this.cb_FindAllFileOccurrences.TabIndex = 6;
+            this.cb_FindAllFileOccurrences.Text = "Find All File Occurrences";
+            this.cb_FindAllFileOccurrences.UseVisualStyleBackColor = true;
             // 
             // label_MetodePencarian
             // 
@@ -225,7 +224,7 @@
             this.panel_Menu.Controls.Add(this.btn_Reset);
             this.panel_Menu.Controls.Add(this.panel_Logo);
             this.panel_Menu.Controls.Add(this.tB_InputFile);
-            this.panel_Menu.Controls.Add(this.cb_FindAllDataOccurance);
+            this.panel_Menu.Controls.Add(this.cb_FindAllFileOccurrences);
             this.panel_Menu.Controls.Add(this.label_MetodePencarian);
             this.panel_Menu.Controls.Add(this.opt_DFS);
             this.panel_Menu.Controls.Add(this.opt_BFS);
@@ -432,7 +431,7 @@
         private System.Windows.Forms.TextBox tB_InputFile;
         private System.Windows.Forms.Label lbl_ChooseStartDir;
         private System.Windows.Forms.Label label_InputFile;
-        private System.Windows.Forms.CheckBox cb_FindAllDataOccurance;
+        private System.Windows.Forms.CheckBox cb_FindAllFileOccurrences;
         private System.Windows.Forms.Label label_MetodePencarian;
         private System.Windows.Forms.RadioButton opt_DFS;
         private System.Windows.Forms.RadioButton opt_BFS;

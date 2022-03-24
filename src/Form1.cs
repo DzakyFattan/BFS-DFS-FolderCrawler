@@ -55,11 +55,11 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
 
                 if(searchMode == "DFS")
                 {
-                    (pic_Result.Image,arrResultPath) = GetResultDFS(cb_FindAllDataOccurance.Checked);
+                    (pic_Result.Image,arrResultPath) = GetResultDFS(cb_FindAllFileOccurrences.Checked);
                 } 
                 else if (searchMode == "BFS")
                 {
-                    (pic_Result.Image,arrResultPath) = GetResultBFS(cb_FindAllDataOccurance.Checked);
+                    (pic_Result.Image,arrResultPath) = GetResultBFS(cb_FindAllFileOccurrences.Checked);
                 } 
                 else { pic_Result.Image = null; }
 
@@ -146,7 +146,7 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             label_fileName.ForeColor = Color.White;
             label_searchMethod.Text = null;
             searchMode = null;
-            cb_FindAllDataOccurance.Checked = false;
+            cb_FindAllFileOccurrences.Checked = false;
             findAllOccurence = false;
             opt_BFS.Checked = false;
             opt_DFS.Checked = false;
@@ -178,11 +178,6 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
             {
                 pic_Result.SizeMode = PictureBoxSizeMode.Zoom;
             }
-        }
-
-        private void cb_FindAllDataOccurance_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
