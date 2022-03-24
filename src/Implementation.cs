@@ -62,25 +62,12 @@ namespace Tubes2Stima_DeathFromStima_FolderCrawler
                     imp.DFS(ref graphResult, multiple);
                     if (imp.ResultPath != null && resultPath == null || resultPath != null && imp.ResultPath.Length > resultPath.Length)
                     {
-                        if (multiple)
+                        // create tree with the root dir as root and all iterated subDir up to subDir with found file as subTree
+                        graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
+                        graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
+                        resultPath = imp.ResultPath;
+                        if (!multiple)
                         {
-                            if (resultPath == null)
-                            {
-                                resultPath = imp.ResultPath;
-                            }
-                            else
-                            {
-                                resultPath.Concat(imp.ResultPath).ToArray();
-                            }
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
-                            graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
-                        }
-                        else
-                        {
-                            resultPath = imp.ResultPath;
-                            // create tree with the root dir as root and all iterated subDir up to subDir with found file as subTree
-                            graphResult.AddEdge(root.Name, dirInfo.Name).Attr.Color = Color.Blue;
-                            graphResult.FindNode(root.Name).Attr.Color = Color.Blue;
                             subDirs = subDirs.Skip(1).ToArray();
                             foreach (DirectoryInfo restdir in subDirs)
                             {
