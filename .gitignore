@@ -6,4 +6,3 @@ src/packages
 src/.vs
 src/obj/Debug
 *.cache
-bin/*
